@@ -1,0 +1,85 @@
+/* .log-list {
+  display: flex;
+  flex-direction: column;
+  padding: 40rpx;
+}
+.log-item {
+  margin: 10rpx;
+} */
+.wx_login_container{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.wx_login_container image{
+  width: 100%;
+  position: absolute;
+  top:0;
+  left: 0;
+  height: 100%;
+  z-index: -1;
+}
+.wx_login_title{
+  width: 100%;
+  text-align: center;
+  padding-top: 220rpx;
+  font-weight: bold;
+  text-shadow: 3rpx 3rpx 3rpx rgba(0, 0, 0, .5);
+}
+.wx_login_box{
+  width: 80%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 100rpx 90rpx 70rpx 90rpx;
+  /* border:1rpx solid #313131; */
+  border-radius: 20rpx;
+  text-align: center;
+  box-shadow: 10rpx 10rpx 20rpx rgba(0, 0, 0, .3);
+  background-color: rgba(255, 255, 255, 0.5);
+  margin-top: 50rpx;
+}
+.wx_login_box .section{
+  width: 100%;
+  height: 50rpx;
+  margin-bottom: 50rpx;
+}
+.wx_login_box .wx_login_psw{
+  margin: 0;
+}
+.wx_login_box .tipTxt{
+  width: 100%;
+  height: 50rpx;
+  text-align: left;
+}
+.wx_login_box .tipTxt text{
+  font-size: 25rpx;
+  color: crimson;
+  display: inline;
+}
+.wx_login_box .section input{
+  width: 100%;
+  height: 100%;
+  font-size: 27rpx;
+  padding-left: 5rpx;
+  padding-right: 5rpx;
+  text-align: left;
+  border:2rpx solid #313131;
+  border-radius: 10rpx;
+}
+.wx_login_sub{
+  width: 100%;
+  text-align: center;
+  margin-top: 30rpx;
+}
+.wx_login_sub button{
+  width: 200rpx;
+  height: 50rpx;
+  background-color: cornflowerblue;
+  letter-spacing: 10rpx;
+  font-size: 29rpx;
+  color:white;
+  line-height:50rpx;
+}
+

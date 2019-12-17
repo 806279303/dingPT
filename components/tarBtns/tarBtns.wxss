@@ -1,0 +1,41 @@
+/* components/tarBtns/tarBtns.wxss */
+.wx_tarBtns_container{
+    width: 100%;
+    box-sizing: border-box;
+    /* padding: 30rpx 0 30rpx 0; */
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 0;
+    background-color: white;
+    border-top: 1rpx solid #696868;
+    box-shadow: 0 -10rpx 20rpx rgba(0, 0, 0, .1);
+}
+.wx_tarBtns_btn{
+    width: 15%;
+    height: 10vh;
+    /* background-color: blueviolet; */
+    text-align: center;
+    font-size: 25rpx;
+    /* line-height: 10vh; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center; 
+}
+.wx_tarBtns_btn .img{
+    width: 40rpx;
+    height: 40rpx;
+    display: flex;
+    justify-content: center;
+    align-items:center; 
+}
+.wx_tarBtns_btn image{
+    width: 40rpx;
+    height: 40rpx;
+}
+.wx_tarBtns_btn .txt{
+    height: 40rpx;
+    font-size: 25rpx;
+}

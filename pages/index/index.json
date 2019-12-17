@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "定配通系统",
+  "usingComponents": {
+    "tarBtns":"/components/tarBtns/tarBtns",
+    "commodity":"/components/commodity/commodity",
+    "clients":"/components/clients/clients",
+    "output":"/components/output/output",
+    "financialTb":"/components/financialTb/financialTb",
+    "modify":"/components/modify/modify"
+  }
+}

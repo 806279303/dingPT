@@ -1,0 +1,48 @@
+<!--index.wxml-->
+<view class="container">
+  <commodity id="commodity"  
+    bind:sendCommodityId="getCommodityId"
+    bind:sendClientLglasses="getClientLglasses"
+    bind:sendClientRglasses="getClientRglasses"
+  >
+  </commodity>
+
+  <clients id="clients"
+    bind:sendToOutputClientId="getToOutputClientId"
+  >
+  
+  </clients>
+
+  <output id="output"
+    bind:sendToOutputClient="getToChooseOutputClient"
+    bind:sendToOutputRglasses="getToChooseOutputRglasses"
+    bind:sendToOutputLglasses="getToChooseOutputLglasses"
+    bind:sendToOutputCommodity="getToChooseOutputCommodity"
+    bind:resetOutput="resetOutput"
+    bind:resetFinaceData="resetFinaceData"
+  >
+  </output>
+
+  <financialTb id="financialTb"
+  
+  >
+  </financialTb>
+
+  <modify id="modify"
+  
+  >
+  </modify>
+
+  <tarBtns id="tarBtns"
+    Commodity='商品模板'
+    Clients='客户管理'
+    Output="出单"
+    FinancialTb="财务报表"
+    Modify="安全设置"
+    bind:showCommodity='_showCommodity'
+    bind:showClients='_showClients'
+    bind:showOutput='_showOutput'
+    bind:showFinancialTb='_showFinancialTb'
+    bind:showModify='_showModify'
+  ></tarBtns>
+</view>

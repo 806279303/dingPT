@@ -1,0 +1,29 @@
+<!--logs.wxml-->
+<!-- <view class="container log-list">
+  <block wx:for="{{logs}}" wx:for-item="log">
+    <text class="log-item">{{index + 1}}. {{log}}</text>
+  </block>
+</view> -->
+
+
+<view class="wx_login_container">
+  <image class="" src="../../image/1.jfif" mode="aspectFill" lazy-load="false" binderror="" bindload="">
+  </image>
+  <view class="wx_login_title">定配通系统</view>
+  <view class="wx_login_box">
+    <form bindsubmit="formSubmit">
+      <view class="section wx_login_username">
+        <input name="username" placeholder="请输入手机号" bindfocus="inputFocus"/>
+      </view>
+      <view class="section wx_login_psw">
+        <input password name="pwd" placeholder="请输入密码" bindfocus="inputFocus"/>
+      </view>
+      <view class="tipTxt" hidden="{{!isTip}}">
+        <text>{{tipTxt}}</text>  
+      </view>
+      <view class="wx_login_sub">
+        <button form-type="submit">登陆</button>
+      </view>
+    </form>
+  </view>
+</view>

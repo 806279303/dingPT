@@ -1,0 +1,447 @@
+/* components/output/output.wxss */
+.output_select{
+    width: 100%;
+    height: 60rpx;
+    border: 2rpx solid #313131;
+    box-sizing: border-box;
+    text-align: center;
+    line-height: 60rpx;
+    display: flex;
+    flex-flow: row nowrap;
+}
+.output_select .output_select_box{
+    width: 50%;
+    box-sizing: border-box;
+    font-size: 28rpx;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    /* 给定位用 */
+    position: relative;
+}
+.output_select_type{
+    border-right: 2rpx solid #313131;
+}
+.output_slect_trai{
+    width: 0;
+    height: 0;
+    border-width: 10rpx;
+    border-style: solid;
+    border-color: transparent transparent transparent #313131;
+    margin-left: 10rpx;
+}
+.transformTrai{
+    border-color: #313131 transparent transparent transparent;
+    margin-top: 7rpx;
+}
+.output_select_box .posBox{
+    position: absolute;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    top: 60rpx;
+}
+.output_select_data_box{
+    width: 100%;
+    height: 45rpx;
+    line-height: 45rpx;
+    box-sizing: border-box;
+    border-width: 0 2rpx 2rpx 2rpx;
+    border-color: #313131;
+    border-style: solid;
+    color: #313131;
+    background-color: rgb(216, 216, 216);
+}
+.com_select_box .posBox{
+    position: absolute;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    top: 60rpx;
+    background-color: white;
+    z-index: 199;
+}
+.com_select_data_box{
+    width: 100%;
+    height: 45rpx;
+    line-height: 45rpx;
+    box-sizing: border-box;
+    border-width: 0 2rpx 2rpx 2rpx;
+    border-color: #313131;
+    border-style: solid;
+    color: #313131;
+    background-color: white;
+    z-index: 199;
+}
+
+.output_search{
+    width: 100%;
+    box-sizing: border-box;
+    /* border-bottom: 2rpx solid #313131; */
+    padding:15rpx 30rpx;
+}
+.output_search input{
+    width: 95%;
+    margin:0 auto;
+    height: 50rpx;
+    border-radius: 20rpx;
+    padding-left: 25rpx;
+    padding-right: 15rpx;
+    font-size: 27rpx;
+    color: #313131;
+    border:2rpx solid #313131;
+}
+
+
+
+.output_tb{
+    width: 100%;
+    box-sizing: border-box;
+    border-bottom: 2rpx solid #313131;
+}
+.output_tb .tr{
+    width: 100%;
+    display: flex;
+    border-top: 2rpx solid #313131;
+    border-left: 2rpx solid #313131;
+    box-sizing: border-box;
+    font-size: 30rpx;
+    color: black;
+}
+.output_tb .tr .th{
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 2rpx solid #313131;
+    box-sizing: border-box;
+    padding: 20rpx 0;
+}
+.output_tb .tr .td{
+    width: 25%;
+    box-sizing: border-box;
+    justify-content: center;
+    text-align: center;
+    border-right: 2rpx solid #313131;
+    box-sizing: border-box;
+    padding: 20rpx 0;
+}
+.output_tb .tr .width1{
+    width: 32%;
+}
+.output_tb .tr .width2{
+    width: 30%;
+}
+.output_tb .tr .width3{
+    width: 18%;
+}
+.output_tb .tr .width4{
+    width: 20%;
+}
+
+.outputDetail{
+    width: 100%;
+    height: 90vh;
+    background-color: white;
+    z-index: 999;
+    position: fixed;
+    top:0;
+}
+.outputDetail .closeOutputDetail{
+    width: 120rpx;
+    position: absolute;
+    top: 60%;
+    left: 10rpx;
+}
+.outputDetail .closeOutputDetail button{
+    width: 120rpx;
+    height: 60rpx;
+    font-size: 30rpx;
+    line-height: 60rpx; 
+}
+.outputDetail .outputDetailTable{
+    width: 700rpx;
+    margin: 50rpx auto 0;
+    border-top:2rpx solid #313131;
+}
+.outputDetail .outputDetailTable .row{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    border-bottom:2rpx solid #313131;
+}
+.outputDetail .outputDetailTable .jusrow{
+    justify-content: center;
+}
+.outputDetail .outputDetailTable .nobotline{
+    border: none;
+}
+.outputDetail .outputDetailTable .row .col{
+    /* box-sizing: border-box; */
+    display: flex;
+    align-items: center;
+    /* border: 1rpx solid #331133; */
+    font-size: 30rpx;
+}
+.outputDetail .outputDetailTable .row .juscol{
+    justify-content: center;
+}
+.outputDetail .outputDetailTable .row .rightcol{
+    justify-content: flex-end;
+}
+.outputDetail .outputDetailTable .row .nocenter{
+    justify-content: flex-start;
+    padding-left: 10rpx;
+    padding-right: 13rpx;
+}
+.outputDetail .outputDetailTable .row .new_time{
+    font-size: 25rpx;
+    text-indent: -1rpx;
+}
+.outputDetail .outputDetailTable .row .col1{
+    width:10%;
+}
+.outputDetail .outputDetailTable .row .col2{
+    width:22%;
+}
+.outputDetail .outputDetailTable .row .col3{
+    width:30%;
+}
+.outputDetail .outputDetailTable .row .col4{
+    width:40%;
+}
+.outputDetail .outputDetailTable .row .col5{
+    width: 50%;
+}
+.outputDetail .outputDetailTable .row .col6{
+    width: 60%;
+}
+.outputDetail .outputDetailTable .row .col7{
+    width: 70%;
+}
+.outputDetail .outputDetailTable .row .col8{
+    width: 80%;
+}
+.outputDetail .outputDetailTable .row .colspe{
+    width: 35%;
+}
+.outputDetail .outputDetailTable .row .col4p5{
+    width: 45%;
+}
+.outputDetail .outputDetailTable .row .nobl{
+    border:none;
+    border-bottom: 1rpx solid #313131;
+    border-right: 1rpx solid #313131;
+    border-top: 1rpx solid #313131;
+}
+.outputDetail .outputDetailTable .row .nobr{
+    border:none;
+    border-top: 1rpx solid #313131;
+    border-bottom: 1rpx solid #313131;
+    border-left: 1rpx solid #313131;
+}
+.outputDetail .outputDetailTable .row .nobt{
+    border:none;
+    border-bottom: 1rpx solid #313131;
+    border-left: 1rpx solid #313131;
+    border-right: 1rpx solid #313131;
+}
+.outputDetail .outputDetailTable .row .nobb{
+    border:none;
+    border-top: 1rpx solid #313131;
+    border-left: 1rpx solid #313131;
+    border-right: 1rpx solid #313131;
+}
+.outputDetail .outputDetailTable .bold{
+    font-weight: bold;
+}
+.outputDetail .tipTxt{
+    margin-top: 35rpx;
+    width: 100%;
+    text-align: center;
+    font-size: 24rpx;
+    color:rgb(82, 82, 82);
+}
+
+
+.outputBigBtn{
+    width: 100rpx;
+    height: 100rpx;
+    border: 2rpx solid #313131;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 15vh;
+    left:50%;
+    margin-left: -50rpx;
+    box-shadow: 10rpx 10rpx 20rpx rgba(0, 0, 0, .2);
+    line-height: 100rpx;
+    text-align: center;
+    font-size: 40rpx;
+    background-color: white;
+    z-index: 1000;
+}
+
+.outputChoose{
+    width: 100%;
+    height: 90vh;
+    position: fixed;
+    top:0;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    box-sizing: border-box;
+    padding-top: 200rpx;
+    z-index: 999;
+}
+.outputChoose .closeOutputChoose{
+    width: 120rpx;
+    position: absolute;
+    bottom: 20vh;
+    left: 0;
+}
+.outputChoose .closeOutputChoose button{
+    width: 120rpx;
+    height: 60rpx;
+    font-size: 28rpx;
+    line-height: 60rpx;
+}
+.outputChoose .row{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30rpx;
+}
+.outputChoose .row .lc{
+    width: 180rpx;
+    text-align: right;
+    margin-right: 10rpx;
+    /* background-color: aquamarine; */
+    font-size: 30rpx;
+}
+.outputChoose .row .rc{
+    width: 300rpx;
+    margin-right: 20rpx;
+}
+.outputChoose .row .rc button{
+    width: 100%;
+    height: 60rpx;
+    font-size: 30rpx;
+    line-height: 60rpx;
+}
+.outputChoose .row .rc .active{
+    color:black;
+    background-color: rgb(126, 199, 138);
+    font-weight: bold;
+}
+.outputChoose .resetOutput{
+    margin-top:40rpx;
+}
+.outputChoose .nextTick{
+    margin-top: 10rpx;
+}
+.outputChoose .resetOutput button{
+    width: 150rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    font-size: 30rpx;
+}
+.outputChoose .nextTick button{
+    width: 150rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    font-size: 30rpx;
+}
+.outputDetail .subPrint{
+    width: 200rpx;
+    margin:50rpx auto 0;
+    text-align: center;
+}
+.outputDetail .subPrint .printName{
+    width: 200rpx;
+    border:1px solid #313131;
+    margin-bottom: 20rpx;
+    text-align: left;
+    padding-left: 5rpx;
+    font-size: 25rpx;
+}
+.outputDetail .subPrint button{
+    width: 100%;
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 30rpx;
+}
+
+
+.powerClientInfo{
+    width:100%;
+    position: fixed;
+    top: 10%;
+    left:0;
+    box-shadow: 10rpx 10rpx 20rpx rgba(0, 0, 0, .3);
+    border: 2rpx solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;    
+    z-index: 1001;
+    box-sizing: border-box;
+}
+.powerClientInfo .closePowerClientInfo{
+    width: 30rpx;
+    height: 30rpx;
+    font-size: 35rpx;
+    position: absolute;
+    top:10rpx;
+    right:10rpx;
+}
+.powerClientInfo .title{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80rpx;
+    font-size: 40rpx;
+    border-bottom: 2rpx solid #313131;
+}
+.powerClientInfo .search{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70rpx;
+}
+.powerClientInfo .search input{
+    border:1rpx solid #313131;
+    width: 80%;
+    height: 50rpx;
+    padding-left: 5rpx;
+}
+.powerClientInfo .clientTb{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+.powerClientInfo .clientTb .row{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+.powerClientInfo .clientTb .row .col{
+    border:1rpx solid #313131;
+    box-sizing: border-box;
+    font-size: 28rpx;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    height: 60rpx;
+    overflow: hidden;
+    flex: 1;
+}

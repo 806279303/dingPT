@@ -1,0 +1,184 @@
+/* components/modify/modify.wxss */
+.wx_modify_container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.wx_modify_container .check_box{
+    min-width: 40%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+.wx_modify_container .check_box .title{
+    font-size: 50rpx;
+    line-height: 100rpx;
+    font-weight: bold;
+    margin-top: 100rpx;
+    margin-bottom: 20rpx;
+}
+/* .wx_modify_container .check_box .master_pwd{
+} */
+.wx_modify_container .check_box .master_pwd .pwd_input{
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content:center; 
+
+}
+.wx_modify_container .check_box .master_pwd .pwd_input input{
+    border:1px solid #313131;
+    font-size: 30rpx;
+    padding-left: 5rpx;
+    width: 45%;
+    text-align: left;
+}
+.wx_modify_container .check_box .master_pwd .masterBtn{
+    margin-top: 50rpx;
+}
+.wx_modify_container .check_box .pwd_list{
+    /* background-color: aqua; */
+    display: flex;
+    justify-content:center; 
+    margin-left: -60rpx;    
+}
+.wx_modify_container .check_box .pwd_list .row{
+    display: flex;
+    /* align-items: center; */
+    height: 60rpx;
+    margin-bottom: 18rpx;
+}
+.wx_modify_container .check_box .pwd_list .row .col{
+    /* vertical-align: middle; */
+    /* border: 1px solid #313131; */
+}
+.wx_modify_container .check_box .pwd_list .row .rightTxt{
+    width: 210rpx;
+    padding-right: 17rpx;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 28rpx;
+}
+.wx_modify_container .check_box .pwd_list .row input{
+    border:1px solid #313131;
+    width: 300rpx;
+    text-align: left;
+}
+.subBtn{
+    width: 150rpx;
+    height: 50rpx;
+    font-size: 30rpx;
+    line-height: 50rpx;
+    margin-top: 30rpx;
+    cursor: pointer;
+}
+.wx_modify_container .check_box .pwd_list .pwdSubBtn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-left: 20px;
+}
+.wx_modify_container .check_box .pwd_list .pwdSubBtn button{
+}
+
+.closeModifyPwd{
+    width: 120rpx;
+    position: fixed;
+    left: 0;
+    top:700rpx;
+}
+.closeModifyPwd button{
+    width: 100%;
+    height: 50rpx;
+    line-height: 50rpx;
+    font-size: 28rpx;
+}
+
+.saBox{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    box-sizing: border-box;
+}
+.saBox .header{
+    width: 100%;
+    line-height: 50rpx;
+    text-align: center;
+    box-sizing: border-box;
+    border-top:1px solid #313131;
+    border-bottom:1px solid #313131;
+    font-size: 23rpx;
+}
+.saBox .searchWra{
+    width: 100%;
+    line-height: 50rpx;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 15rpx 25rpx;
+}
+.saBox .searchWra input{
+    width: 100%;
+    padding-left: 15rpx;
+    border:1px solid #313131;
+    text-align: left;
+    text-align: left;
+    border-radius: 7rpx;
+    font-size: 24rpx;
+}
+.saBox .genTb{
+    width: 100%;
+    border-left:1px solid #313131;
+    border-top:1px solid #313131;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+.saBox .genTb .row{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-sizing: border-box;
+}
+.saBox .genTb .row .col{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    border-right:1px solid #313131;
+    border-bottom:1px solid #313131;
+    font-size: 24rpx;
+    font-weight: 450;
+    padding:7rpx 0;
+    box-sizing: border-box;
+    word-break: break-all;
+}
+.saBox .genTb .row .time{
+    font-size: 19rpx;
+    text-align: center;
+}
+.saBox .genTb .row .red{
+    color:red;
+}
+.saBox .genTb .row .th{
+    font-size: 25rpx;
+    font-weight: bold;
+    padding: 10rpx 0;
+}
+
+.optBtns{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding-top: 40%;
+
+}
+.optBtns .handleBtn{
+    width: 40%;
+    margin-bottom: 20rpx;
+}

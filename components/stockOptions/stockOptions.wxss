@@ -1,0 +1,71 @@
+/* components/stockOptions/stockOptions.wxss */
+.btnGroup{
+    width: 100%;
+    position: fixed;
+    bottom: 10vh;
+    display: flex;
+    align-items: center;
+}
+.flexStart{
+    justify-content: flex-start;
+
+}
+.spaceAround{
+    justify-content: space-around;
+
+}
+.btnGroup view{
+    width: 30%;
+    border-left:2rpx solid #313131;
+    border-top:2rpx solid #313131;
+    border-bottom:2rpx solid #313131;
+    line-height: 50rpx;
+    text-align: center;
+    font-size: 25rpx;
+    font-weight: bold;  
+    background-color: rgba(255, 255, 255, .7);
+}
+.btnGroup view:last-child{
+    border-right:2rpx solid #313131;
+}
+.stockBox{
+    position: fixed;
+    width: 300rpx;
+    top: 25vh;
+    left: 50%;
+    margin-left: -150rpx;
+    border:2rpx solid #313131;
+    border-radius: 15rpx;
+    overflow: hidden;
+    background-color: aliceblue;
+}
+.stockBox .header{
+    width: 100%;
+    line-height: 40rpx;
+    border-bottom: 2rpx solid #313131;
+    text-align: right;
+}
+.stockBox .header .close{
+    margin-right: 10rpx;
+    font-size:28rpx;
+}
+.stockBox .writeStockPsw{
+    width: 100%;
+    padding: 20rpx 0;
+}
+.stockBox .writeStockPsw input{
+    width:70%;
+    height: 27rpx;
+    font-size: 20rpx;
+    border: 2rpx solid #313131;
+    margin:0 auto;
+    padding:0 5rpx;
+}
+.stockBox button{
+    width: 100%;
+    height: 45rpx;
+    color:white;
+    line-height: 40rpx;
+    font-size: 25rpx;
+    border-radius: 0;
+}

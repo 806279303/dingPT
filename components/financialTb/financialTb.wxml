@@ -1,0 +1,207 @@
+<!--components/financialTb/financialTb.wxml-->
+<view class="wx_financialTb_container" hidden="{{!isFinancialTb}}">
+    <!-- select框 -->
+    <view class="com_select" wx:if="{{!financialDetail && !monthFinancialDetail}}">
+        <view class="com_select_box com_select_type" bindtap="showSelectType">
+            <view>
+                <text>{{selectedYear}}</text>
+            </view>
+            <view class="com_slect_trai {{isSelectType?'transformTrai':''}}"></view>
+            <!-- 筛选列表 -->
+            <view class="posBox com_select_type_data" wx:if="{{isSelectType}}">
+                <view class="com_select_data_box" wx:for="{{years}}" data-year="{{item}}" wx:key="{{index}}" bindtap="selectCurrentYear">{{item}}</view>
+            </view>
+        </view>
+        <view class="com_select_box com_select_name" bindtap="showNameType">
+            <view>
+                <text>{{selectedMonth=='0'?'全年':selectedMonth}}</text>
+            </view>
+            <view class="com_slect_trai {{isSelectName?'transformTrai':''}}"></view>
+            <!-- 筛选列表 -->
+            <view class="posBox com_select_name_data" wx:if="{{isSelectName}}">
+                <view class="com_select_data_box" wx:for="{{months}}" data-month="{{item}}" wx:key="{{index}}" bindtap="selectCurrentMonth">{{item}}</view>
+            </view>
+        </view>
+    </view>
+    <!-- search -->
+    <view class="com_search" wx:if="{{!financialDetail && !monthFinancialDetail}}">
+        <input class="com_search_input" placeholder="店名搜索" bindblur="searchFinance"/>
+    </view>
+    <!-- financeList -->
+    <view class="financeList" wx:if="{{!financialDetail && !monthFinancialDetail}}">
+        <view class="financeRow">
+            <view class="col col1">店名</view>
+            <!-- <view class="col col2">销售额</view> -->
+            <view class="col col2">主商品业绩</view>
+            <view class="col col2">其他费用</view>
+            <view class="col col2">总负债</view>
+        </view> 
+        <view class="financeRow" wx:for="{{financeData}}" wx:key="{{index}}" data-clientid="{{item.client_id}}" bindtap="tofinancialDetail">    
+            <view class="col col1" data-clientid="{{item.client_id}}">{{item.client_shop}}</view>
+            <view class="col col2" data-clientid="{{item.client_id}}">{{item.total_consume}}</view>
+            <view class="col col2" data-clientid="{{item.client_id}}">{{item.total_other_consume}}</view>
+            <view class="col col2" data-clientid="{{item.client_id}}">{{item.client_credit}}</view>
+        </view>
+        <!-- <view class="financeRow" wx:for="{{financeData}}" wx:key="{{index}}" data-clientid="{{item.client_id}}" bindtap="tofinancialDetail">    
+            <view class="name">店名:{{item.client_shop}}</view>
+            <view class="money">本年销售额:{{item.total_consume}}</view>
+        </view> -->
+    </view>
+
+    <!-- wx:if="{{monthFinancialDetail}}" -->
+    
+    <!-- select框 -->
+    <view class="dayFilter" wx:if="{{monthFinancialDetail && selectedMonth!=='全年'}}">
+        <view class="com_select_box com_select_type" bindtap="showDaySelectType">
+            <view>
+                <text>日期筛选：{{selectedDay==''?'整月':selectedDay}}</text>
+            </view>
+            <view class="com_slect_trai {{isSelectDayType?'transformTrai':''}}"></view>
+            
+            <scroll-view
+                scroll-y
+                style="height: 20vh;"
+                class="posBox com_select_type_data" 
+                wx:if="{{isSelectDayType}}"
+            >
+                <view class="com_select_data_box" wx:for="{{days}}" data-day="{{item}}" wx:key="{{index}}" bindtap="selectCurrentDay">{{item}}</view>
+            </scroll-view>
+            
+        </view>
+    </view>
+    <!-- 月表格 -->
+    <view class="financial_tb" wx:if="{{monthFinancialDetail}}">
+        <view class="tr">
+            <!-- <view class="th width1">明细</view>
+            <view class="th width2">订单编号</view>
+            <view class="th width3">{{isDayFinance?'本日销量':'本月销量'}}</view>
+            <view class="th width4">已收款</view>
+            <view class="th width5">其他费用</view>
+            <view class="th width5">总欠款</view> -->
+            <view class="th width2">订单编号</view>
+            <view class="th width1">订单明细</view>
+            <view class="th width3">其他费用</view>
+            <view class="th width4">已收款</view>
+            <view class="th width5">单笔费用</view>
+        </view>
+        <block wx:for="{{financeDetailData}}" wx:key="{{index}}">
+            <view class="tr" data-tradeid="{{item.trade_id}}" bindtap="chooseMonthFinanceDetailData">
+                <!-- <view class="td width1" data-tradeid="{{item.trade_id}}">{{item.new_time}}</view>
+                <view class="td width2" data-tradeid="{{item.trade_id}}">{{item.order_id}}</view>
+                <view class="td width3" data-tradeid="{{item.trade_id}}">{{item.consume}}</view>
+                <view class="td width4" data-tradeid="{{item.trade_id}}">{{item.receipt}}</view>
+                <view class="td width5" data-tradeid="{{item.trade_id}}">{{item.other_consume}}</view>
+                <view class="td width5" data-tradeid="{{item.trade_id}}">{{item.owe_money}}</view> -->
+                <view class="td width2" data-tradeid="{{item.trade_id}}">{{item.order_id}}</view>
+                <view class="td width1" data-tradeid="{{item.trade_id}}">{{item.good_kind+''+item.good_name+''+item.type}}{{"("+item.consume+"元)"}}</view>
+                <view class="td width3" data-tradeid="{{item.trade_id}}">{{item.add_type}}{{"("+item.other_consume+"元)"}}</view>
+                <view class="td width4" data-tradeid="{{item.trade_id}}">{{item.receipt}}</view>
+                <view class="td width5" data-tradeid="{{item.trade_id}}">{{item.consume-item.receipt+item.other_consume}}</view>
+            </view>
+        </block>
+    </view>
+
+    <!-- 年表格 -->
+    <view class="financial_tb" wx:if="{{financialDetail}}">
+        <view class="tr">
+            <view class="th width1">明细</view>
+            <view class="th width2">月销售额</view>
+            <view class="th width3">月收款</view>
+            <view class="th width4">其他费用</view>
+            <view class="th width5">月总欠款</view>
+        </view>
+        <block wx:for="{{financeDetailData}}" wx:key="{{index}}">
+            <view class="tr" data-tradeid="{{item.trade_id}}" bindtap="choosefinanceDetailData">
+                <view class="td width1" data-tradeid="{{item.trade_id}}">{{item.time}}</view>
+                <view class="td width2" data-tradeid="{{item.trade_id}}">{{item.total_consume}}</view>
+                <view class="td width3" data-tradeid="{{item.trade_id}}">{{item.total_receipt}}</view>
+                <view class="td width4" data-tradeid="{{item.trade_id}}">{{item.total_other_consume}}</view>
+                <view class="td width5" data-tradeid="{{item.trade_id}}">{{item.owe_money}}</view>
+            </view>
+        </block>
+    </view>
+
+    <view class="btnGroup" :class="{{isShowStockOptions?'flexStart':'spaceAround'}}" wx:if="{{financialDetail || monthFinancialDetail}}">
+        <view bindtap="checkStock" wx:if="{{!isShowStockOptions}}">财务报表操作</view>
+        
+        <!-- <view bindtap="deleteStock" wx:if="{{isShowStockOptions}}">{{isDelete?'取消删除':'删除'}}</view> -->
+        <view bindtap="toReceipt" wx:if="{{isShowStockOptions}}">收款</view>
+        <view bindtap="toAddGood" wx:if="{{isShowStockOptions}}">添加</view>
+        <view bindtap="toCloseGood" wx:if="{{isShowStockOptions}}">退出</view>
+    </view>
+        
+    <view class="stockBox" wx:if="{{isShowCheckStock}}">
+        <view class="header"><view class="close" bindtap="closeCheckStock">x</view></view>
+        <view class="writeStockPsw"><input bindinput="recordInput" placeholder="{{'请输入财务密码'}}"/></view>
+        <button type="primary" bindtap="subPwd" data-type="{{placeholder}}">确 定</button>
+    </view>
+
+    
+    <view class="backToFinaceDta" bindtap="backToFinaceDta" wx:if="{{financialDetail || monthFinancialDetail}}">
+        <button type="primary">返 回</button>
+    </view>
+    
+    <view class="financeBox" wx:if="{{isFinanceBox}}">
+        <view class="closeFinanceBox" bindtap="closeFinanceBox">x</view>
+        <view class="header"></view>
+        <view class="row headrow">
+            <view class="leftcol">金额：</view>
+            <view class="rightcol"><input type="text" value="{{sendFinanceForm.receipt}}" bindinput="inputReceipt"/></view>
+        </view>
+        <view class="row">
+            <view class="leftcol">备注：</view>
+            <view class="rightcol"><input type="text" value="{{sendFinanceForm.remark}}" bindinput="inputRemark"/></view>
+        </view>
+        <view class="row">
+            <button type="primary" bindtap="subFinance">提 交</button>
+        </view>
+    </view>
+
+    <view class="financeBox" wx:if="{{isAddFinance}}">
+        <view class="closeFinanceBox" bindtap="closeAddFinanceBox">x</view>
+        <view class="header"></view>
+        <view class="row headrow">
+            <view class="leftcol">销售额：</view>
+            <view class="rightcol"><input type="text" value="{{sendAddFinanceForm.consume}}" bindinput="inputAddConsume"/></view>
+        </view>
+        <!-- <view class="row">
+            <view class="leftcol">收款：</view>
+            <view class="rightcol"><input type="text" value="{{sendAddFinanceForm.receipt}}" bindinput="inputAddReceipt"/></view>
+        </view>
+        <view class="row">
+            <view class="leftcol">其他费用：</view>
+            <view class="rightcol"><input type="text" value="{{sendAddFinanceForm.other_consume}}" bindinput="inputAddOtherConsume"/></view>
+        </view> -->
+        <view class="row">
+            <view class="leftcol">备注：</view>
+            <view class="rightcol"><input type="text" value="{{sendAddFinanceForm.remark}}" bindinput="inputAddRemark"/></view>
+        </view>
+        <view class="row">
+            <button type="primary" bindtap="subaAddFinance">提 交</button>
+        </view>
+    </view>
+
+    <view class="financeBox showFinanceRemark" wx:if="{{isShowFinance}}">
+        <view class="closeFinanceBox" bindtap="closeShowFinanceBox">x</view>
+        <view class="row">
+            <view class="leftcol">备注:</view>
+            <view class="rightcol">{{curRemark}}</view>
+        </view>
+    </view>
+
+
+    <view class="totalConsume" wx:if="{{!financialDetail}}">
+        <block wx:if="{{selectedMonth=='0'}}">
+                本年总销售额:{{total_consume}}
+        </block>
+        <block wx:else="{{selectedMonth!=='0'}}">
+                本月总销售额:{{total_consume}}
+        </block>
+    </view>
+
+    <view class="totalConsume" wx:if="{{financialDetail}}">
+            <block wx:if="{{selectedMonth=='0'}}">
+                    本月总销售额:{{totalClientConsume}}
+            </block>
+        </view>
+</view>

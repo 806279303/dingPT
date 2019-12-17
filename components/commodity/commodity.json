@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "addGood":"./good_add/good_add",
+    "stockOption":"../stockOptions/stockOptions"
+  }
+}

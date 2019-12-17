@@ -1,0 +1,788 @@
+/* components/commodity/commodity.wxss */
+.wx_commodity_container{
+    height: 90vh;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+.com_select{
+    width: 100%;
+    height: 60rpx;
+    border: 2rpx solid #313131;
+    box-sizing: border-box;
+    text-align: center;
+    line-height: 60rpx;
+    display: flex;
+    flex-flow: row nowrap;
+}
+.com_select .com_select_box{
+    width: 50%;
+    box-sizing: border-box;
+    font-size: 28rpx;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    /* 给定位用 */
+    position: relative;
+}
+.com_select_type{
+    border-right: 2rpx solid #313131;
+}
+.com_slect_trai{
+    width: 0;
+    height: 0;
+    border-width: 10rpx;
+    border-style: solid;
+    border-color: transparent transparent transparent #313131;
+    margin-left: 10rpx;
+}
+.transformTrai{
+    border-color: #313131 transparent transparent transparent;
+    margin-top: 7rpx;
+}
+.com_select_box .posBox{
+    position: absolute;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    top: 60rpx;
+    background-color: rgb(172, 172, 172);
+    z-index: 99;
+    box-shadow: 0rpx 0rpx 15rpx rgba(0, 0, 0, .4);
+}
+.com_select_data_box{
+    width: 100%;
+    height: 45rpx;
+    line-height: 45rpx;
+    box-sizing: border-box;
+    border-width: 0 2rpx 2rpx 2rpx;
+    border-color: #313131;
+    border-style: solid;
+    color: #313131;
+    background-color: rgb(216, 216, 216);
+}
+
+
+.com_search{
+    width: 100%;
+    box-sizing: border-box;
+    /* border-bottom: 2rpx solid #313131; */
+    padding:0 30rpx;
+}
+.com_search input{
+    width: 95%;
+    margin:0 auto;
+    height: 50rpx;
+    border-radius: 20rpx;
+    padding-left: 25rpx;
+    padding-right: 15rpx;
+    font-size: 27rpx;
+    color: #313131;
+    border:2rpx solid #313131;
+    margin:15rpx 0;
+}
+
+.com_table{
+    width: 100%;
+    box-sizing: border-box;
+}
+.com_table .tr{
+    width: 100%;
+    display: flex;
+    /* flex-flow: row nowrap; */
+    border-top: 2rpx solid #313131;
+    border-left: 2rpx solid #313131;
+    border-bottom: none;
+    box-sizing: border-box;
+    font-size: 30rpx;
+    color: black;
+}
+.com_table .haveBorderBottom{
+    border-bottom: 2rpx solid #313131;
+
+}
+/* .com_table .tr:first-child{
+    border-bottom: 2rpx solid #313131;
+} */
+.com_table .tr .th{
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    border-right: 2rpx solid #313131;
+    padding: 20rpx 0;
+}
+.com_table .tr .flex2{
+    flex: 2;
+}
+.com_table .tr .good_kind{
+    border-right: 2rpx solid #313131;
+    border-bottom: 2rpx solid #313131;
+    display: flex;
+    flex:1;
+    justify-content: center;
+    align-items: center;
+    font-size: 25rpx;
+    font-weight: bold;
+    text-align: center;
+}
+.com_table .tr .right{
+    box-sizing: border-box;
+    display: flex;
+    flex:4;
+    flex-direction: column;
+}
+.com_table .tr .right .good_box{
+    display: flex;
+    flex-direction: row;
+}
+.com_table .tr .right .good_box .good_name{
+    display: flex;
+    flex:1;
+    border-right:2rpx solid #313131;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2rpx solid #313131;
+    font-size: 25rpx;
+    font-weight: bold;
+}
+.com_table .tr .right .good_box .good_detail{
+    display: flex;
+    flex-direction: column;
+    flex:3;
+    box-sizing: border-box;
+    border-bottom: 2rpx solid #313131;
+}
+.com_table .tr .right .good_box .good_detail:last-child{
+    border-bottom: none;
+
+}
+.com_table .tr .right .good_box .good_detail .good_onelist{
+    min-height: 90rpx;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: stretch;
+    box-sizing: border-box;
+    border-bottom: 2rpx solid #313131;
+}
+.com_table .tr .right .good_box .good_detail .good_onelist:active{
+    /* background-color: darkgrey; */
+}
+.com_table .tr .right .good_box .good_detail .good_onelist .td{
+    width: 33.33%;
+    border-right: 2rpx solid #313131;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center; 
+    padding: 5rpx 0 5rpx 0;
+}
+.com_table .tr .right .good_box .good_detail .com_model{
+    flex: 2;
+}
+.com_table .tr .right .good_box .good_detail .com_price{
+    flex: 1;
+}
+.com_table .tr .push1{
+    padding-right: 2rpx;
+    box-sizing: content-box;
+}
+.com_table .tr .push2{
+    padding-right: 2rpx;
+    box-sizing: content-box;
+}
+
+
+.modifyCommodity{
+    width: 100%;
+    position: fixed;
+    height: 90vh;
+    background-color: white;
+    box-sizing: border-box;
+    padding-top: 100rpx;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 999;
+}
+.modifyCommodity .backToCommodity{
+    width: 150rpx;
+    height: 55rpx;
+    position: absolute;
+    top:20rpx;
+    left:30rpx;
+}
+.modifyCommodity .backToCommodity button{
+    width: 100%;
+    height: 100%;
+    line-height: 55rpx;
+    font-size: 30rpx;
+}
+.modifyCommodity .title{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 100rpx;
+    font-size: 50rpx;
+    font-weight: bold;
+}
+.modifyCommodity .row{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30rpx;
+}
+.modifyCommodity .row .leftcol{
+    width: 190rpx ;
+    text-align: right;
+    padding-right: 10rpx;
+}
+.modifyCommodity .row .rightcol{
+    margin-right: 50rpx;
+}
+.modifyCommodity .row .rightcol input{
+    width: 300rpx;
+    border:2rpx solid #313131;
+}
+.modifyCommodity .row .rightcol .disabled{
+    border:none;
+}
+.modifyCommodity .row .rightcol button{
+    width: 155rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    font-size: 25rpx;
+    margin-right: 10rpx;
+    display: inline-block;
+}
+.modifyCommodity .subBtn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 50rpx;
+}
+.modifyCommodity .subBtn button{
+    width: 200rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    font-size: 30rpx;
+}
+
+.commodityDetail{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-top: 2rpx solid #313131;
+}
+.commodityDetail .closeCommidityDetail{
+    width: 120rpx;
+    position: fixed;
+    bottom:30vh;
+    left: 0;
+}
+.commodityDetail .closeCommidityDetail button{
+    width: 100%;
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 30rpx;
+}
+.commodityDetail .tr{
+    width: 100%;
+    display: flex;
+    /* border-bottom: 2rpx solid #313131; */
+    border-left: 2rpx solid #313131;
+    box-sizing: border-box;
+}
+.commodityDetail .tr .th{
+    width: 33%;
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+    border-right:2rpx solid #313131;
+    border-bottom:2rpx solid #313131;
+    /* box-sizing: border-box; */
+}
+.commodityDetail .tr .good_kind{
+    width: 33.3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right:2rpx solid #313131;
+    border-bottom:2rpx solid #313131;
+    box-sizing: border-box;
+}
+.commodityDetail .tr .right{
+    width: 66.6%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+.commodityDetail .tr .right .good_onelist{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.commodityDetail .tr .right .good_onelist .td{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right:2rpx solid #313131;
+    border-bottom:2rpx solid #313131;
+    box-sizing: border-box;
+}
+
+.btnGroup{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+}
+.flexStart{
+    justify-content: flex-start;
+
+}
+.spaceAround{
+    justify-content: space-around;
+
+}
+.btnGroup view{
+    width: 30%;
+    border-left:2rpx solid #313131;
+    border-top:2rpx solid #313131;
+    border-bottom:2rpx solid #313131;
+    line-height: 50rpx;
+    text-align: center;
+    font-size: 25rpx;
+    font-weight: bold;
+}
+.btnGroup view:last-child{
+    border-right:2rpx solid #313131;
+}
+.stockBox{
+    position: fixed;
+    width: 300rpx;
+    top: 25vh;
+    left: 50%;
+    margin-left: -150rpx;
+    border:2rpx solid #313131;
+    border-radius: 15rpx;
+    overflow: hidden;
+    background-color: aliceblue;
+}
+.stockBox .header{
+    width: 100%;
+    line-height: 40rpx;
+    border-bottom: 2rpx solid #313131;
+    text-align: right;
+}
+.stockBox .header .close{
+    margin-right: 10rpx;
+    font-size:28rpx;
+}
+.stockBox .writeStockPsw{
+    width: 100%;
+    padding: 20rpx 0;
+}
+.stockBox .writeStockPsw input{
+    width:70%;
+    height: 27rpx;
+    font-size: 20rpx;
+    border: 2rpx solid #313131;
+    margin:0 auto;
+    padding:0 5rpx;
+}
+.stockBox button{
+    width: 100%;
+    height: 45rpx;
+    color:white;
+    line-height: 40rpx;
+    font-size: 25rpx;
+    border-radius: 0;
+}
+
+
+.handleGood{
+    width: 100%;
+    height: 90vh;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top:0;
+    z-index: 999;
+}
+.handleGood .header{
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 50rpx;
+    margin-bottom: 30rpx;
+}
+.handleGood .row{
+    width: 100%;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    margin-bottom: 10rpx;
+}
+.handleGood .row .selectBox{
+
+}
+.handleGood .row .describe{
+    width: 100rpx;
+    /* background-color: aqua; */
+    font-size: 30rpx;
+    text-align: right;
+}
+.handleGood .row .selectBox{
+    width: 150rpx;
+    height: 50rpx;
+    /* background-color: bisque; */
+    position: relative;
+}
+.handleGood .row .addBtn{
+    width: 120rpx;
+    height: 50rpx;
+    margin-left: 30rpx;
+}
+.handleGood .row .addBtn button{
+    width: 100%;
+    height: 50rpx;
+    line-height: 50rpx;
+    font-size: 30rpx;
+}
+.handleGood .row .selectBox .selectPlaceholder{
+    width: 100%;
+    height: 50rpx;
+    border:2rpx solid #313131;
+    line-height: 50rpx;
+}
+.handleGood .row .selectBox .selectNum{
+    width: 100%;
+    /* background-color: blueviolet; */
+    position: absolute;
+    top: 54rpx;
+    box-shadow: 5rpx 5rpx 10rpx rgba(0, 0, 0, .1);
+    background-color: white;
+    z-index: 1000;
+}
+.handleGood .row .selectBox .selectNum .selectNumList{
+    width: 100%;
+    height: 50rpx;
+    border-left: 2rpx solid #331133;
+    border-right: 2rpx solid #331133;
+    border-bottom: 2rpx solid #331133;
+    background-color: white;
+}
+.handleGood .row .inputBox{
+    width: 140rpx;
+    border:2rpx solid #313131;
+}
+.handleGood .row .inputBox input{
+    width: 100%;
+    height: 40rpx;
+}
+.handleGood .formRow .selectBox{
+    width: 120rpx;
+}
+.handleGood .addMoreStock{
+    width: 400rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    font-size: 45rpx;
+    text-align: center;
+    border: 2rpx solid #313131;
+    border-radius: 5rpx;
+    margin:15rpx auto 0;
+}
+.handleGood .sendHandleBtn{
+    width: 200rpx;
+    height: 60rpx;
+    margin:50rpx auto 0;
+}
+.handleGood .sendHandleBtn button{
+    width: 100%;
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 35rpx;
+}
+.handleGood .deleteCurrentAddFood{
+    width: 25rpx;
+    height: 25rpx;
+    font-size: 35rpx;
+    text-align: center;
+    line-height: 25rpx;
+    margin-left: 10rpx;
+}
+.backToCommodityDetail{
+    width: 120rpx;
+    height: 50rpx;
+    position: absolute;
+    left: 10rpx;
+    bottom:150rpx;
+}
+.backToCommodityDetail button{
+    width: 120rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    font-size: 26rpx;
+}
+
+.modifyGood{
+    width: 100%;
+    height: 90vh;
+    position: fixed;
+    top: 0;
+    background-color: white;
+    flex-direction: column;
+    z-index: 999;
+}
+.modifyGood .row{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30rpx;
+    align-items: center;
+}
+.modifyGood .title{
+    padding-top: 100rpx;
+    margin-bottom: 60rpx;
+    font-size: 40rpx;
+    font-weight: bold;
+}
+.modifyGood .row .leftCol{
+    width: 100rpx;
+    /* background-color: blueviolet; */
+    text-align: right;
+    font-size: 30rpx;
+    margin-right: 10rpx;
+}
+.modifyGood .row .rightCol{
+    width: 200rpx;
+    margin-right: 20rpx;
+    /* background-color: cadetblue; */
+    display: flex;
+    justify-content: flex-start;  
+}
+
+.modifyGood .row .rightCol .selectBox{
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+}
+.modifyGood .row .rightCol .selectBox .selectNum{
+    width: 100%;
+    height: 50rpx;
+    border:2rpx solid #313131;
+    line-height: 50rpx;
+    font-size: 30rpx;
+}
+.modifyGood .row .rightCol .selectBox .selectList{
+    width: 100%;
+    position: absolute;
+    top: 54rpx;
+    left: 0;
+    background-color: white;
+    z-index: 1000;
+}
+.modifyGood .row .rightCol .selectBox .selectList .selectDetail{
+    width: 100%;
+    height: 50rpx;
+    background-color: white;
+    box-sizing: border-box;
+    border-left:2rpx solid #313131;
+    border-right:2rpx solid #313131;
+    border-bottom:2rpx solid #313131;
+    box-shadow: 5rpx 5rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+.modifyGood .row  .rightCol input{
+    width: 100%;
+    border: 2rpx solid #313131;
+}
+.modifyGood .subModifyGood{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.modifyGood .subModifyGood button{
+    width: 200rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 30rpx;
+    margin-top: 20rpx;
+}
+.modifyGood .closeHandleModifyGood{
+    width: 120rpx;
+    position: absolute;
+    left:10rpx;
+    top: 100rpx;
+}
+.modifyGood .closeHandleModifyGood button{
+    width: 100%;
+    height: 60rpx;
+    line-height: 60rpx; 
+    font-size: 30rpx;
+}
+
+
+.powerClientInfo{
+    width:100%;
+    position: fixed;
+    top: 10%;
+    left:0;
+    box-shadow: 10rpx 10rpx 20rpx rgba(0, 0, 0, .1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;    
+    border: 2rpx solid #e0e0e0;
+    z-index: 1001;
+}
+.powerClientInfo .closePowerClientInfo{
+    width: 30rpx;
+    height: 30rpx;
+    font-size: 35rpx;
+    position: absolute;
+    top:10rpx;
+    right:10rpx;
+}
+.powerClientInfo .title{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80rpx;
+    font-size: 40rpx;
+    border-bottom: 2rpx solid #313131;
+}
+.powerClientInfo .search{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70rpx;
+}
+.powerClientInfo .search input{
+    border:1rpx solid #313131;
+    width: 80%;
+    height: 50rpx;
+    padding-left: 5rpx;
+}
+.powerClientInfo .clientTb{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.powerClientInfo .clientTb .row{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.powerClientInfo .clientTb .row .col{
+    border:1rpx solid #313131;
+    box-sizing: border-box;
+    font-size: 28rpx;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    height: 60rpx;
+    overflow: hidden;
+}
+.powerClientInfo .clientTb .row .col1{
+    width: 21%;
+}
+.powerClientInfo .clientTb .row .col2{
+    width: 20%;
+}
+.powerClientInfo .clientTb .row .col3{
+    width: 26%;
+}
+.powerClientInfo .clientTb .row .col4{
+    width: 24%;
+}
+.powerClientInfo .clientTb .row .col5{
+    width: 9%;
+}
+.powerClientInfo .clientTb .row .col .noselect{
+    width: 30rpx;
+    height: 30rpx;
+    border: 1rpx solid #313131;
+    border-radius: 50%;
+}
+.powerClientInfo .clientTb .row .col .selected{
+    width: 30rpx;
+    height: 30rpx;
+    /* border: 1rpx solid #313131; */
+    border-radius: 50%;
+    background-color: #313131;
+}
+.powerClientInfo .clientTb .row .bold{
+    font-weight: bold;
+}
+.powerClientInfo .subPowerClient{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 30rpx;
+}
+.powerClientInfo .subPowerClient button{
+    width: 80%;
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 30rpx;
+}
+.add_box{
+    width: 300rpx;
+    padding: 20rpx 0 20rpx 0;
+    display: flex;
+    justify-content: center;
+    text-align: center; 
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 10rpx 10rpx 20rpx rgba(0, 0, 0, .2);
+    position: absolute;
+    left:50%;
+    margin-left: -150rpx;
+    top: 25%;
+    z-index: 1002;
+}
+.add_box .title{
+    font-size: 30rpx;
+    font-weight: bold;
+}
+.add_box .add_input {
+    margin-top: 20rpx;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.add_box .add_input input{
+    border:2rpx solid #313131;
+    width: 80%;
+    height: 30rpx;
+    text-align: left;
+}
+.add_box .sub_btn{
+    width: 100%;
+    margin-top: 20rpx;
+    display: flex;
+    justify-content: center;
+}
+.add_box .sub_btn button{
+    width: 80%;
+    height: 40rpx;
+    line-height: 40rpx;
+    font-size: 25rpx;
+}
+.add_box .closeAdd{
+    position: absolute;
+    top:10rpx;
+    right:20rpx;
+    font-size: 28rpx;
+}

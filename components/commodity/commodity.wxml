@@ -1,0 +1,351 @@
+<!-- components/commodity/commodity.wxml -->
+<view class="wx_commodity_container" hidden="{{!isCommodity}}">
+    <scroll-view
+        scroll-y
+        style="height: 90vh;"
+    >
+    <!-- select框 -->
+    <view class="com_select" wx:if="{{!isCommodityDetail}}">
+        <view class="com_select_box com_select_type" bindtap="showSelectType">
+            <view>
+                <text>{{currentKind == ''?'种类':currentKind}}</text>
+            </view>
+            <view class="com_slect_trai {{isSelectType?'transformTrai':''}}"></view>
+            <!-- 筛选列表 -->
+            <view class="posBox com_select_type_data" wx:if="{{isSelectType}}">
+                <view class="com_select_data_box" wx:for="{{goodKindsAndNames.kinds}}" data-currentid="{{item.kind_id}}" data-currentval="{{item.good_kind}}" bindtap="filterKind" wx:key="{{index}}">{{item.good_kind}}</view>
+                <view class="com_select_data_box" bindtap="recoverKind">无筛选</view>
+            </view>
+        </view>
+        <view class="com_select_box com_select_name" bindtap="showNameType">
+            <view>
+                <text>{{currentName == ''?'名称':currentName}}</text>
+            </view>
+            <view class="com_slect_trai {{isSelectName?'transformTrai':''}}"></view>
+            <!-- 筛选列表 -->
+            <view class="posBox com_select_name_data" wx:if="{{isSelectName}}">
+                <view class="com_select_data_box" wx:for="{{goodKindsAndNames.names}}" data-currentid="{{item.name_id}}" data-currentval="{{item.good_name}}" bindtap="filterName" wx:key="{{index}}">{{item.good_name}}</view>
+                <view class="com_select_data_box" bindtap="recoverName">无筛选</view>
+            </view>
+        </view>
+    </view>
+    <view class="com_select" wx:if="{{isCommodityDetail}}">
+        <view class="com_select_box com_select_type" bindtap="showSelectType">
+            <view>
+                <text>{{currentSph == ''?'球镜':currentSph}}</text>
+            </view>
+            <view class="com_slect_trai {{isSelectType?'transformTrai':''}}"></view>
+            <!-- 筛选列表 -->
+            <view class="posBox com_select_type_data" wx:if="{{isSelectType}}">
+                <view class="com_select_data_box" wx:for="{{goodSphAndAsti.sph_data}}" data-currentid="{{item.sph_id}}" data-currentval="{{item.sph}}" bindtap="filterSph" wx:key="{{index}}">{{item.sph}}</view>
+                <view class="com_select_data_box" bindtap="recoverSph">无筛选</view>
+            </view>
+        </view>
+        <view class="com_select_box com_select_name" bindtap="showNameType">
+            <view>
+                <text>{{currentAsti == ''?'散光':currentAsti}}</text>
+            </view>
+            <view class="com_slect_trai {{isSelectName?'transformTrai':''}}"></view>
+            <!-- 筛选列表 -->
+            <view class="posBox com_select_name_data" wx:if="{{isSelectName}}">
+                <view class="com_select_data_box" wx:for="{{goodSphAndAsti.astigmatism_data}}" data-currentid="{{item.astigmatism_id}}" data-currentval="{{item.astigmatism}}" bindtap="filterAsti" wx:key="{{index}}">{{item.astigmatism}}</view>
+                <view class="com_select_data_box" bindtap="recoverAsti">无筛选</view>
+            </view>
+        </view>
+    </view>
+    <!-- search -->
+    <view class="com_search">
+        <input class="com_search_input" placeholder="型号搜索" bindblur="filterAllData" wx:if="{{!isCommodityDetail}}"/>
+        <!-- <input class="com_search_input" placeholder="搜索" wx:if="{{isCommodityDetail}}"/> -->
+    </view>
+    <!-- table -->
+    <view class="com_table" wx:if="{{!isCommodityDetail}}">
+        <view class="tr {{commodity_data.length == 0?'haveBorderBottom':''}}">
+            <view class="th push1">种类</view>
+            <view class="th push2">名称</view>
+            <view class="th flex2">型号</view>
+            <view class="th width1">价格</view>
+            <!-- <view class="th width2">库存量</view> -->
+            <!-- <view class="th width2">附加费用</view> -->
+        </view>
+        <block wx:for="{{commodity_data}}" wx:key="{{index}}">
+            <!-- data -->
+            <view class="tr">
+                <!-- 种类 -->
+                <view class="td good_kind">{{item.good_kind}}</view>
+                <view class="right">
+                    <!-- 右边一个名称组 -->
+                    <view class="good_box" wx:for="{{item.children}}" wx:for-item="val" wx:for-index="idx" wx:key="{{idx}}">
+                        <!-- 名称占位 -->
+                        <view class="td good_name">
+                            <view class="tdd tdd1 com_name_det">
+                                {{val.good_name}}
+                            </view>
+                        </view>
+                        <!-- 详细信息总占位 -->
+                        <view class="good_detail">
+                            <!-- 详细信息每一列占位 -->
+                            <view class="good_onelist"   wx:for="{{val.children}}" wx:for-item="val2" wx:for-index="idx2" wx:key="{{idx}}" data-commodityid="{{val2.commodity_id}}" bindtap="chooseCurrentCommodity">
+                                <!-- 型号 -->
+                                <view class="td com_model" data-commodityid="{{val2.commodity_id}}">
+                                    {{val2.type}}
+                                </view>
+                                <!-- 价格 -->
+                                <view class="td width1 com_price" data-commodityid="{{val2.commodity_id}}">
+                                    {{val2.good_price}}
+                                </view>
+                                <!-- 库存量 -->
+                                <!-- <view class="td width2 com_stock" data-commodityid="{{val2.commodity_id}}">
+                                        {{val2.good_inventory}}
+                                </view> -->
+                                <!-- 附加费用 -->
+                                <!-- <view class="td width2 com_stock" data-commodityid="{{val2.add_price}}">
+                                        {{val2.add_price}}
+                                </view> -->
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </block>
+    </view>
+    <!-- detailtable  -->
+    <view class="commodityDetail" wx:if="{{isCommodityDetail}}">
+        <view class="closeCommidityDetail"><button type="primary" bindtap="closeCommidityDetail">返回</button></view>
+        <view class="tr {{commodityDetailData.length == 0?'haveBorderBottom':''}}">
+            <view class="th">球镜</view>
+            <view class="th">散光</view>
+            <view class="th">库存量</view>
+        </view>
+        <block wx:for="{{commodityDetailData}}" wx:key="{{index}}">
+            <!-- data -->
+            <view class="tr">
+                <!-- 种类 -->
+                <view class="td good_kind">{{item.sph}}</view>
+                <view class="right">
+                    <view class="good_onelist"   wx:for="{{item.children}}" wx:for-item="val2" wx:for-index="idx2" wx:key="{{idx}}" data-goodid="{{val2.good_id}}" bindtap="chooseGoodData">
+                        <view class="td com_model" data-goodid="{{val2.good_id}}">
+                            {{val2.astigmatism}}
+                        </view>
+                        <view class="td width1 com_price" data-goodid="{{val2.good_id}}">
+                            {{val2.good_inventory}}
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </block>
+    </view>
+    <!-- detailtable  -->
+    <view class="btnGroup" :class="{{isShowGoodStockOptions?'flexStart':'spaceAround'}}" wx:if="{{isCommodityDetail}}">
+        <view bindtap="checkGoodStock" wx:if="{{!isShowGoodStockOptions}}">库存操作</view>
+        <view bindtap="deleteGoodStock" wx:if="{{isShowGoodStockOptions}}">{{isGoodDelete?'取消删除':'删除'}}</view>
+        <view bindtap="modifyGoodStock" wx:if="{{isShowGoodStockOptions}}">{{isGoodModify?'取消修改':'修改'}}</view>
+        <view bindtap="addGoodStock" wx:if="{{isShowGoodStockOptions}}">添加</view>
+        <view bindtap="exitGoodStock" wx:if="{{isShowGoodStockOptions}}">退出</view>
+    </view>
+    <view class="stockBox" wx:if="{{isShowCheckGoodStock}}">
+        <view class="header"><view class="close" bindtap="closeCheckStock">x</view></view>
+        <view class="writeStockPsw"><input bindinput="recordInput" placeholder="{{'请输入库存管理员密码'}}"/></view>
+        <button type="primary" bindtap="subPwd" data-type="{{placeholder}}">确 定</button>
+    </view>
+
+    <stockOption wx:if="{{!isCommodityDetail}}" placeholder="库存"  bind:addGoodState="getAddGoodState"  bind:modifyGoodState="getModifyGoodState" bind:deleteGoodState="getDeleteGoodState" bind:exitGoodState="getExitGoodState"></stockOption>
+    
+    <addGood id="addGood"
+        isShowAddGood="{{isShowAddGood}}"
+        bind:closeAddGoodWindow="getCloseAddGoodWindow"
+    >
+
+    </addGood>
+
+    <view class="modifyCommodity" wx:if="{{isModifyGood}}">
+        <view class="backToCommodity">
+            <button type="primary" bindtap="closeModifyGood" wx:if="{{!isPowerClientInfo}}">返回</button>
+        </view>
+        <view class="title">修改库存</view>
+        <view class="row">
+            <view class="leftcol">种类：</view>
+            <view class="rightcol"><input type="text" value="{{modifyGoodForm.good_kind}}" disabled class="disabled"/></view>
+        </view>
+        <view class="row">
+            <view class="leftcol">名称：</view>
+            <view class="rightcol"><input type="text" value="{{modifyGoodForm.good_name}}" disabled class="disabled"/></view>
+        </view>
+        <view class="row">
+            <view class="leftcol">型号：</view>
+            <view class="rightcol"><input type="text" bindinput="recordModType" value="{{modifyGoodForm.type}}"/></view>
+        </view>
+        <view class="row">
+            <view class="leftcol">价格：</view>
+            <view class="rightcol"><input type="text" bindinput="recordModPrice" value="{{modifyGoodForm.good_price}}"/></view>
+        </view>
+        <!-- <view class="row">
+            <view class="leftcol">附加费用：</view>
+            <view class="rightcol"><input type="text" bindinput="recordModAddPrice" value="{{modifyGoodForm.add_price}}"/></view>
+        </view> -->
+        <view class="row">
+            <view class="leftcol">开放权限：</view>
+            <view class="rightcol">
+                <button type="primary" bindtap="allClientPower">{{modifyGoodForm.special_client.length == 0?'已选':''}}所有</button>
+                <button type="primary" bindtap="chooseClientPower">{{modifyGoodForm.special_client.length !== 0?'已选':''}}部分</button>
+            </view>
+        </view>
+        <view class="subBtn">
+            <button type="primary" bindtap="subModify">提 交</button>
+        </view>
+    </view>
+    
+    <view class="handleGood" wx:if="{{isHandleGood}}">
+        <view class="backToCommodityDetail"><button type="primary" bindtap="backToCommodityDetail">返回</button></view>
+        <view class="header">增加光度</view>
+        <view class="row">
+            <view class="describe">球镜：</view>
+            <view class="selectBox">
+                <view class="selectPlaceholder" bindtap="checkBGoptions">{{chooedSph.val == ''?'球镜':chooedSph.val}}</view>
+                <view class="selectNum" wx:if="{{ischeckBGOptions}}">
+                    <view class="selectNumList" wx:for="{{sphSelectOptions}}" data-sph="{{item}}" wx:key="{{index}}" bindtap="chooseBGoptions">
+                        {{item.sph}}
+                    </view>
+                </view>
+            </view>
+            <view class="addBtn"><button type="primary" bindtap="addSphBox">增加</button></view>
+            <view class="addBtn"><button type="primary" bindtap="delSph">删除</button></view>
+        </view>
+        <view class="row">
+            <view class="describe">散光：</view>
+            <view class="selectBox">
+                <view class="selectPlaceholder" bindtap="checkSGoptions">{{chooedAsti.val == ''?'散光':chooedAsti.val}}</view>
+                <view class="selectNum" wx:if="{{ischeckSGOptions}}">
+                    <view class="selectNumList" wx:for="{{astigmatismSelectOptions}}" data-astigmatism="{{item}}" wx:key="{{index}}" bindtap="chooseSGoptions">
+                        {{item.astigmatism}}
+                    </view>
+                </view>
+            </view>
+            <view class="addBtn"><button type="primary" bindtap="addAstiBox">增加</button></view>
+            <view class="addBtn"><button type="primary" bindtap="delAsti">删除</button></view>
+        </view>
+    
+        <view class="header">增加库存</view>
+        <view class="row formRow" wx:for="{{handleGoodData}}" wx:for-item="val" wx:for-index="idx" wx:key="{{idx}}">
+            <view class="describe">球镜:</view>
+            <view class="selectBox">
+                <view class="selectPlaceholder" data-currentidx="{{idx}}" bindtap="showCurrentSphOptions">{{val.sph}}</view>
+                <view class="selectNum" wx:if="{{val.isAddBGoptions}}">
+                    <view class="selectNumList" wx:for="{{sphSelectOptions}}" data-currentidx="{{idx}}" data-sphid="{{item.sph_id}}" wx:key="{{index}}" bindtap="chooseAddGoodBG">
+                        {{item.sph}}
+                    </view>
+                </view>
+            </view>
+            <view class="describe">散光:</view>
+            <view class="selectBox">
+                <view class="selectPlaceholder" data-currentidx="{{idx}}" bindtap="showCurrentAstigmatismOptions">{{val.astigmatism}}</view>
+                <view class="selectNum" wx:if="{{val.isAddSGoptions}}">
+                    <view class="selectNumList" wx:for="{{astigmatismSelectOptions}}" data-currentidx="{{idx}}" data-astigmatismid="{{item.astigmatism_id}}" wx:key="{{index}}" bindtap="chooseAddGoodSG">
+                        {{item.astigmatism}}
+                    </view>
+                </view>
+            </view>
+            <view class="describe">库存:</view>
+            <view class="inputBox">
+                <input type="text" data-currentidx="{{idx}}" bindinput="recordAddGoodInventory"/>
+            </view>
+            <view class="deleteCurrentAddFood" wx:if="{{idx>0}}" data-currentidx="{{idx}}" bindtap="deleteCurrentAddFood">x</view>
+            <view class="deleteCurrentAddFood" wx:if="{{!idx>0}}"></view>
+        </view>
+        <view class="addMoreStock" bindtap="addMoreHandleFood">+</view>
+        <view class="sendHandleBtn"><button type="primary" bindtap="subHandleAddGood">提 交</button></view>
+    </view>
+    <view class="add_box" wx:if="{{isAddSphBox}}">
+        <view class="title">添加球镜</view>  
+        <view class="add_input kind_input"><input type="text" bindinput="inputSph"/></view>
+        <view class="sub_btn"><button type="primary" bindtap="addSph">确 定</button></view>
+        <view class="closeAdd" bindtap="closeAddSph">x</view>
+    </view>
+    <view class="add_box" wx:if="{{isAddAstiBox}}">
+        <view class="title">添加散光</view>  
+        <view class="add_input kind_input"><input type="text" bindinput="inputAsti"/></view>
+        <view class="sub_btn"><button type="primary" bindtap="addAsti">确 定</button></view>
+        <view class="closeAdd" bindtap="closeAddAsti">x</view>
+    </view>
+    <view class="addSphBox"></view>
+
+    <view class="modifyGood" wx:if="{{isHandleModifyGood}}">
+        <view class="closeHandleModifyGood"><button type="primary" bindtap="closeHandleModifyGood">返回</button></view>   
+        <view class="row title">修改库存</view>
+        <view class="row">
+            <view class="leftCol">种类:</view>
+            <view class="rightCol">{{handleModifyGood.good_kind}}</view>
+        </view>
+        <view class="row">
+            <view class="leftCol">名称:</view>
+            <view class="rightCol">{{handleModifyGood.good_name}}</view>
+        </view>
+        <view class="row">
+            <view class="leftCol">型号:</view>
+            <view class="rightCol">{{handleModifyGood.type}}</view>
+        </view>
+        <view class="row">
+            <view class="leftCol">价格:</view>
+            <view class="rightCol">{{handleModifyGood.good_kind}}</view>
+        </view>
+        <view class="row">
+            <view class="leftCol">球镜:</view>
+            <view class="rightCol">
+                <view class="selectBox">
+                    <view class="selectNum" bindtap="showModifyGoodSph">{{handleModifyGood.sph}}</view>
+                    <view class="selectList" wx:if="{{isShowModifyGoodBG}}">
+                        <view class="selectDetail" wx:for="{{sphSelectOptions}}" data-sphid="{{item.sph_id}}" :key="{{index}}" bindtap="chooseModifyGoodSph">{{item.sph}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="row">
+            <view class="leftCol">散光:</view>
+            <view class="rightCol">
+                <view class="selectBox">
+                    <view class="selectNum" bindtap="showModifyGoodAstigmatism">{{handleModifyGood.astigmatism}}</view>
+                    <view class="selectList" wx:if="{{isShowModifyGoodSG}}">
+                        <view class="selectDetail" wx:for="{{astigmatismSelectOptions}}" data-astigmatismid="{{item.astigmatism_id}}" :key="{{index}}" bindtap="chooseModifyGoodAssstigmatism">{{item.astigmatism}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="row">
+            <view class="leftCol">库存:</view>
+            <view class="rightCol"><input type="text" bindinput="recordModifyGoodinventory" value="{{handleModifyGood.good_inventory}}"/></view>
+        </view>
+        <view class="subModifyGood"><button type="primary" bindtap="subModifyGood">确 认</button></view>
+    </view>
+
+    <view class="powerClientInfo" wx:if="{{isPowerClientInfo}}">
+        <view class="closePowerClientInfo" bindtap="closePowerClientInfo">x</view>
+        <view class="title">客户权限选择</view>
+        <view class="search"><input type="text" placeholder="姓名搜索" bindchange="findPowerClient"/></view>
+        <scroll-view
+            scroll-y
+            style="height: 650rpx;"
+        >
+            <view class="clientTb">
+                <view class="row">
+                    <view class="col col1 bold">店名</view>
+                    <view class="col col2 bold">姓名</view>
+                    <view class="col col3 bold">手机号</view>
+                    <view class="col col4 bold">信用额度</view>
+                    <view class="col col5 bold">选择</view>
+                </view>
+                <view class="row" wx:for="{{tempClientInfo}}" wx:key="{{index}}">
+                    <view class="col col1">{{item.client_shop}}</view>
+                    <view class="col col2">{{item.client_name}}</view>
+                    <view class="col col3">{{item.client_phone}}</view>
+                    <view class="col col4">{{item.client_credit}}</view>
+                    <view class="col col5"><view class="{{item.isSelect?'selected':'noselect'}}" data-clientid="{{item.client_id}}" data-index="{{index}}" bindtap="selectCurrentPower"></view></view>
+                </view>
+            </view>
+            <view class="subPowerClient"><button type="primary" bindtap="closePowerClientInfo">确 定</button></view>
+        </scroll-view>
+    </view>
+    </scroll-view>
+</view>
+
+
+

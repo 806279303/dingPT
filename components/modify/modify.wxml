@@ -1,0 +1,101 @@
+<!--components/modify/modify.wxml-->
+<view class="wx_modify_container" hidden="{{!isModify}}">
+    <scroll-view scroll-y style="height: 90vh;">
+        <view class="check_box" wx:if="{{!isFinIncome && !isComMod && !isOptBtns}}">
+            <view class="title">设置密码</view>
+            <!-- 验证店长密码 -->
+            <view class="master_pwd" wx:if="{{!isChecked}}">
+                <view class="pwd_input">
+                    <input type="password" style="width:40%" placeholder="验证店长密码" bindinput="bindMasterInput" />
+                </view>
+                <button type="primary" bindtap="checkMasterPwd" class="subBtn masterBtn">确定</button>
+            </view>
+            <!-- 修改各种密码 -->
+            <view class="pwd_list" wx:if="{{isChecked}}">
+                <form>
+                    <view class="row">
+                        <view class="col rightTxt">登录密码:</view>
+                        <view class="col input"><input type="text" value="{{pwdGroup.user_login_pw}}" name="user_login_pw" bindinput="loginpw"/></view>
+                    </view>
+                    <view class="row">
+                        <view class="col rightTxt">库存管理员密码:</view>
+                        <view class="input"><input type="text" value="{{pwdGroup.user_saving_pw}}" name="user_saving_pw"  bindinput="savingpw"/></view>
+                    </view>
+                    <view class="row">
+                        <view class="col rightTxt">店长密码:</view>
+                        <view class="col input"><input type="text" value="{{pwdGroup.user_master_pw}}" name="user_master_pw"  bindinput="masterpw"/></view>
+                    </view>
+                    <view class="row">
+                        <view class="col rightTxt">财务密码:</view>
+                        <view class="col input"><input type="text" value="{{pwdGroup.user_finance_pw}}" name="user_finance_pw"  bindinput="financepw"/></view>
+                    </view>
+                    <view class="row">
+                        <view class="col rightTxt">客户经理密码:</view>
+                        <view class="col input"><input type="text" value="{{pwdGroup.user_manager_pw}}" name="user_manager_pw"  bindinput="managerpw"/></view>
+                    </view>
+                    <view class="pwdSubBtn">
+                        <button type="primary" bindtap="modifyPwd" class="subBtn">确定</button>
+                    </view>
+                </form>
+                <view class="closeModifyPwd"><button type="primary" bindtap="backToOpt">返回</button></view>
+            </view>
+        </view>
+
+        <view class="saBox comMod" wx:if="{{isComMod && !isFinIncome}}">
+            <view class="header">只显示近6个月的记录</view>
+            <view class="searchWra">
+                <input type="text" bindchange="comModInput" placeholder="名称搜索"/>
+            </view>
+            <view class="genTb">
+                <view class="row">
+                    <view class="col th">种类</view>
+                    <view class="col th">名称</view>
+                    <view class="col th">型号</view>
+                    <view class="col th">球镜</view>
+                    <view class="col th">散光</view>
+                    <view class="col th red">修改变动</view>
+                    <view class="col th">时间</view>
+                </view>
+                <view class="row" wx:for="{{comModData}}" wx:key="{{index}}">
+                    <view class="col">{{item.type}}</view>
+                    <view class="col">{{item.good_name}}</view>
+                    <view class="col">{{item.good_kind}}</view>
+                    <view class="col">{{item.sph}}</view>
+                    <view class="col">{{item.astigmatism}}</view>
+                    <view class="col time">{{item.info}}</view>
+                    <view class="col time">{{item.new_time}}</view>
+                </view>
+            </view>
+            <view class="closeModifyPwd"><button type="primary" bindtap="backToOpt">返回</button></view>
+        </view>
+
+        <view class="saBox finIncome" wx:if="{{isFinIncome && !isComMod}}">
+            <view class="header">只显示近6个月的记录</view>
+            <view class="searchWra">
+                <input type="text" bindchange="finIncomeInput" placeholder="店名搜索" />
+            </view>
+            <view class="genTb">
+                <view class="row">
+                    <view class="col th">店名</view>
+                    <view class="col th">收款记录</view>
+                    <view class="col th">收费时间</view>
+                </view>
+                <view class="row" wx:for="{{finIncomeData}}" wx:key="{{index}}">
+                    <view class="col">{{item.client_shop}}</view>
+                    <view class="col">{{item.receipt}}</view>
+                    <view class="col">{{item.new_time}}</view>
+                </view>
+            </view>
+            <view class="closeModifyPwd"><button type="primary" bindtap="backToOpt">返回</button></view>
+        </view>
+
+        <view class="optBtns" wx:if="{{isOptBtns}}">
+            <button type="primary" class="handleBtn" bindtap="showComMod">库存修改记录</button>
+            <button type="primary" class="handleBtn" bindtap="showFinIncome">财务收款记录</button>
+            <button type="primary" class="handleBtn" bindtap="showModPwd">修改密码</button>
+            <view class="closeModifyPwd"><button type="primary" bindtap="backToCheck">返回</button></view>
+        </view>
+
+    </scroll-view>
+
+</view>

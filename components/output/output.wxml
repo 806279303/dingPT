@@ -1,0 +1,243 @@
+<!--components/output/output.wxml-->
+<view class="wx_output_container" hidden="{{!isOutput}}">
+    <scroll-view scroll-y style="height: 90vh;">
+        <view class="output_select">
+            <view class="output_select_box output_select_type" bindtap="showSelectType">
+                <view>
+                    <text>{{selectedYear}}</text>
+                </view>
+                <view class="output_slect_trai {{isSelectType?'transformTrai':''}}"></view>
+                <!-- 筛选列表 -->
+                <view class="posBox com_select_type_data" wx:if="{{isSelectType}}">
+                    <view class="com_select_data_box" wx:for="{{years}}" data-year="{{item}}" wx:key="{{index}}"
+                        bindtap="selectCurrentYear">{{item}}</view>
+                </view>
+            </view>
+            <view class="output_select_box output_select_name" bindtap="showNameType">
+                <view>
+                    <text>{{selectedMonth}}</text>
+                </view>
+                <view class="output_slect_trai {{isSelectName?'transformTrai':''}}"></view>
+                <!-- 筛选列表 -->
+                <view class="posBox com_select_name_data" wx:if="{{isSelectName}}">
+                    <view class="com_select_data_box" wx:for="{{months}}" data-month="{{item}}" wx:key="{{index}}"
+                        bindtap="selectCurrentMonth">{{item}}</view>
+                </view>
+            </view>
+        </view>
+        <!-- search -->
+        <view class="output_search">
+            <input class="output_search_input" placeholder="客户搜索" bindblur="filterOutputData" />
+        </view>
+        <!-- tb -->
+        <view class="output_tb">
+            <view class="tr">
+                <view class="th width1">日期时间</view>
+                <view class="th width2">订单编号</view>
+                <view class="th width3">客户</view>
+                <view class="th width4">价格</view>
+            </view>
+            <block wx:for="{{sellData.data}}" wx:key="{{index}}">
+                <view class="tr" data-tradeid="{{item.trade_id}}" bindtap="chooseOutput">
+                    <view class="td width1" data-tradeid="{{item.trade_id}}">{{item.new_time}}</view>
+                    <view class="td width2" data-tradeid="{{item.trade_id}}">{{item.order_id}}</view>
+                    <view class="td width3" data-tradeid="{{item.trade_id}}">{{item.client_shop}}</view>
+                    <view class="td width4" data-tradeid="{{item.trade_id}}">{{item.consume}}</view>
+                </view>
+            </block>
+        </view>
+
+        <view class="outputBigBtn" bindtap="outputBigBtn" wx:if="{{!isOutputChoose}}">
+            出单
+        </view>
+
+
+        <view class="outputDetail" wx:if="{{isOutputDetail}}">
+            <view class="closeOutputDetail"><button type="primary" bindtap="closeOutputDetail">返回</button></view>
+            <view class="outputDetailTable">
+                <view class="row jusrow bold">
+                    {{outputDetailInfo.good_kind}}{{outputDetailInfo.good_name}}{{outputDetailInfo.type}}
+                </view>
+                <view class="row jusrow nobotline">
+                    <view class="col col1 juscol">位置</view>
+                    <view class="col col2 juscol">球镜</view>
+                    <view class="col col2 juscol">散光</view>
+                    <view class="col col2 juscol">轴位</view>
+                </view>
+                <view class="row jusrow nobotline">
+                    <view class="col col1 juscol">R</view>
+                    <view class="col col2 juscol bold">{{outputDetailInfo.sph_r}}</view>
+                    <view class="col col2 juscol bold">{{outputDetailInfo.a_r}}</view>
+                    <view class="col col2 juscol bold">{{outputDetailInfo.r_axial}}</view>
+                </view>
+                <view class="row jusrow">
+                    <view class="col col1 juscol">L</view>
+                    <view class="col col2 juscol bold">{{outputDetailInfo.sph_l}}</view>
+                    <view class="col col2 juscol bold">{{outputDetailInfo.a_l}}</view>
+                    <view class="col col2 juscol bold">{{outputDetailInfo.l_axial}}</view>
+                </view>
+                <view class="row">
+                    <view class="col col1 rightcol">瞳距:</view>
+                    <view class="col col2 juscol bold">{{outputDetailInfo.eye_distance}}mm</view>
+                    <view class="col col1 rightcol">瞳高:</view>
+                    <view class="col col2 juscol bold">{{outputDetailInfo.eye_high}}mm</view>
+                    <view class="col col1 rightcol">ADD:</view>
+                    <view class="col col2 juscol bold">{{outputDetailInfo.eye_add}}</view>
+                </view>
+                <view class="row">
+                    <view class="col col nocenter">备注:</view>
+                    <view class="col bold">{{outputDetailInfo.remark}}</view>
+                </view>
+                <view class="row">
+                    <view class="col col2 juscol">附加项目:</view>
+                    <view class="col col4p5">{{outputDetailInfo.add_commodity}}</view>
+                    <view class="col colspe"></view>
+                </view>
+                <view class="row">
+                    <view class="col col2 juscol">客户名称:</view>
+                    <view class="col col4p5">{{outputDetailInfo.client_shop}}</view>
+                    <view class="col colspe new_time">{{outputDetailInfo.new_time}}</view>
+                </view>
+            </view>
+        </view>
+
+
+        <view class="outputChoose" wx:if="{{isOutputChoose}}">
+            <view class="closeOutputChoose"><button type="primary" bindtap="closeOutputChoose">返回</button></view>
+            <view class="row">
+                <view class="lc">选择客户：</view>
+                <view class="rc">
+                    <button type="primary" class="{{outBtnGroupShow.globalOutputClient?'active':''}}"
+                        bindtap="chooseOutputClient">{{outBtnGroupShow.globalOutputClient?'已选择':'选择'}}</button>
+                </view>
+            </view>
+            <view class="row">
+                <view class="lc">选择商品：</view>
+                <view class="rc"><button type="primary" class="{{outBtnGroupShow.globalOutputCommodity?'active':''}}"
+                        bindtap="chooseOutputCommodity">{{outBtnGroupShow.globalOutputCommodity?'已选择':'选择'}}</button>
+                </view>
+            </view>
+            <view class="row">
+                <view class="lc">选择R镜：</view>
+                <view class="rc"><button type="primary" class="{{outBtnGroupShow.globalOutputRglasses?'active':''}}"
+                        bindtap="chooseOutputRglasses">{{outBtnGroupShow.globalOutputRglasses?'已选择':'选择'}}</button>
+                </view>
+            </view>
+            <view class="row">
+                <view class="lc">选择L镜：</view>
+                <view class="rc"><button type="primary" class="{{outBtnGroupShow.globalOutputLglasses?'active':''}}"
+                        bindtap="chooseOutputLglasses">{{outBtnGroupShow.globalOutputLglasses?'已选择':'选择'}}</button>
+                </view>
+            </view>
+            <view class="row">
+                <view class="lc">附加项目：</view>
+                <view class="rc"><button type="primary" class="{{outBtnGroupShow.globalOutputAddPro?'active':''}}"
+                        bindtap="chooseOutputAddpro">{{outBtnGroupShow.globalOutputAddPro?'已选择':'选择'}}</button></view>
+            </view>
+            <view class="row resetOutput">
+                <button type="primary" bindtap="resetOutput">重置</button>
+            </view>
+            <view class="row nextTick">
+                <button type="primary" bindtap="chooseOutputNext">下一步</button>
+            </view>
+        </view>
+
+
+        <view class="powerClientInfo" wx:if="{{isPowerClientInfo}}">
+            <view class="closePowerClientInfo" bindtap="closePowerClientInfo">x</view>
+            <view class="title">客户选择</view>
+            <view class="search"><input type="text" placeholder="搜索" bindchange="findPowerClient" /></view>
+            <scroll-view scroll-y style="height: 500rpx;">
+                <view class="clientTb">
+                    <view class="row">
+                        <view class="col bold">店名</view>
+                        <view class="col bold">姓名</view>
+                        <view class="col bold">信用额度</view>
+                    </view>
+                    <view class="row" wx:for="{{tempClientInfo}}" wx:key="{{index}}" data-clientid="{{item}}"
+                        bindtap="chooseClient">
+                        <view class="col" data-clientid="{{item}}">{{item.client_shop}}</view>
+                        <view class="col" data-clientid="{{item}}">{{item.client_name}}</view>
+                        <view class="col" data-clientid="{{item}}">{{item.client_credit}}</view>
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+
+
+        <view class="outputDetail" wx:if="{{isOutputPrint}}">
+            <view class="closeOutputDetail"><button type="primary" bindtap="closeOutputDetail">返回</button></view>
+            <view class="outputDetailTable">
+                <view class="row jusrow bold">
+                    {{outputPrintInfo.kind}}{{outputPrintInfo.name}}{{outputPrintInfo.type}}
+                </view>
+                <view class="row jusrow nobotline">
+                    <view class="col col1 juscol">位置</view>
+                    <view class="col col2 juscol">球镜</view>
+                    <view class="col col2 juscol">散光</view>
+                    <view class="col col2 juscol">轴位</view>
+                </view>
+                <view class="row jusrow nobotline">
+                    <view class="col col1 juscol">R</view>
+                    <view class="col col2 juscol bold">{{outputPrintInfo.r_sph}}</view>
+                    <view class="col col2 juscol bold">{{outputPrintInfo.r_astigmatism}}</view>
+                    <view class="col col2 juscol"><input type="text" bindinput="recordPrintRaxial"
+                            value="{{outputPrintInfo.r_axial}}" style="text-align: center" /></view>
+                </view>
+                <view class="row jusrow">
+                    <view class="col col1 juscol">L</view>
+                    <view class="col col2 juscol bold">{{outputPrintInfo.l_sph}}</view>
+                    <view class="col col2 juscol bold">{{outputPrintInfo.l_astigmatism}}</view>
+                    <view class="col col2 juscol"><input type="text" bindinput="recordPrintLaxial"
+                            value="{{outputPrintInfo.l_axial}}" style="text-align: center" /></view>
+                </view>
+                <view class="row">
+                    <view class="col col1 juscol">瞳距:</view>
+                    <view class="col col2"><input type="text" style="border: 1rpx solid #313131"
+                            bindinput="recordPrintEyeDistance" /></view>
+                    <view class="col col1 juscol">瞳高:</view>
+                    <view class="col col2"><input type="text" style="border: 1rpx solid #313131"
+                            bindinput="recordPrintEyeHign" /></view>
+                    <view class="col col1 juscol">ADD:</view>
+                    <view class="col col2"><input type="text" style="border: 1rpx solid #313131"
+                            bindinput="recordPrintEyeAdd" /></view>
+                </view>
+                <view class="row">
+                    <view class="col col nocenter">备注:</view>
+                    <view class="col6"><input type="text" style="border: 1rpx solid #313131"
+                            bindinput="recordPrintRemark" maxlength="20" /></view>
+                    <!-- <view class="col col2">订单编号:</view>
+                    <view class="col col2">{{outputPrintInfo.order_id}}</view> -->
+                </view>
+                <view class="row">
+                    <view class="col col2 juscol">附加项目:</view>
+                    <view class="col col4p5">{{outputPrintInfo.add_commodity}}</view>
+                    <view class="col colspe"></view>
+                </view>
+                <view class="row">
+                    <view class="col col2 juscol">客户名称:</view>
+                    <view class="col col4p5">{{outputPrintInfo.client_shop}}</view>
+                    <view class="col colspe new_time">{{outputPrintInfo.new_time}}</view>
+                </view>
+                <!-- <view class="subPrint"><button type="primary" bindtap="subPrint">出 单</button></view> -->
+                <view class="subPrint">
+                    <input type="text" value="{{printName}}" placeholder="请填写打印机名称" class="printName" bindinput="inputPrintName"/>
+                    <button type="primary" loading="{{startBtnLoading}}" bindtap="testPrint">开启打印机</button>
+                    <button disabled="{{disabled}}" loading="{{loading}}" class="apply-btn" type='primary'
+                        bindtap="subPrint" style="margin-top: 10rpx">出单</button>
+                    <button disabled="{{disabled}}" class="apply-btn" type='primary' bindtap="closePrint"
+                        style="margin-top: 10rpx">关闭打印</button>
+                </view>
+                <view class="tipTxt">
+                    <text>
+                        温馨提示：\n1、打印机名字可通过打印机打印测试页获得。\n2、长时间未能连接打印机请留意手机蓝牙功能是否已经开启。\n3、切换打印机关闭小程序（需移除后台）后重新进入。
+                    </text>    
+                </view>
+            </view>
+
+        </view>
+
+
+
+    </scroll-view>
+</view>

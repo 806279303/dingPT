@@ -1,0 +1,78 @@
+<!-- components/clients/clients.wxml -->
+<view class="wx_clients_container" hidden="{{!isClients}}">
+    <scroll-view
+        scroll-y
+        style="height: 90vh;"
+    >
+    <view class="client_search">
+        <input class="client_search_input" placeholder="搜索" bindblur="filterClientData"/>
+    </view>
+
+    <view class="client_tb">
+        <view class="tr">
+            <view class="th width1">图片</view>
+            <view class="th width2">店名</view>
+            <view class="th width3">姓名</view>
+            <view class="th width4">手机号</view>
+            <view class="th width5">信用额度</view>
+        </view>
+        <block wx:for="{{client_data.data}}" wx:key="{{index}}">
+            <view class="tr" data-clientid="{{item.client_id}}" bindtap="chooseCurrentClient">
+                <view class="td width1 tdimg" data-clientid="{{item.client_id}}">
+                    <view class="clientImg">
+                        <image class="" src="{{item.client_id_card_photo}}" mode="widthFix" lazy-load="false" binderror="" bindload=""> 
+                        </image>
+                    </view>
+                </view>
+                <view class="td width2" data-clientid="{{item.client_id}}">{{item.client_shop}}</view>
+                <view class="td width3" data-clientid="{{item.client_id}}">{{item.client_name}}</view>
+                <view class="td width4" data-clientid="{{item.client_id}}">{{item.client_phone}}</view>
+                <view class="td width5" data-clientid="{{item.client_id}}">{{item.client_credit}}</view>
+            </view>
+        </block>
+    </view>
+    <stockOption placeholder="库存" bind:openClientsData="openClientsData" bind:exitGoodState="exitGoodState"  bind:addGoodState="getAddGoodState"  bind:modifyGoodState="getModifyGoodState" bind:deleteGoodState="getDeleteGoodState"></stockOption>
+    </scroll-view>
+</view>
+
+
+<!-- 增加客户 -->
+<view class="addClient" wx:if="{{addClientState}}">
+    <view class="backToClient">
+        <button type="primary" bindtap="closeAddClient">返回</button>
+    </view>
+    <view class="title">增加客户</view>
+    <view class="row">
+        <view class="leftcol">店名:</view>
+        <view class="rightcol"><input type="text" value="{{modifyClientData.client_shop}}" bindinput="inputClientShop"/></view>
+    </view>
+    <view class="row">
+        <view class="leftcol">真实姓名:</view>
+        <view class="rightcol"><input type="text" value="{{modifyClientData.client_name}}" bindinput="inputClientName"/></view>
+    </view>
+    <view class="row">
+        <view class="leftcol">手机号码:</view>
+        <view class="rightcol"><input type="text" value="{{modifyClientData.client_phone}}" bindinput="inputClientPhone"/></view>
+    </view>
+    <view class="row">
+        <view class="leftcol">信用额度:</view>
+        <view class="rightcol"><input type="number" value="{{modifyClientData.client_credit}}" bindinput="inputClientCredit"/></view>
+    </view>
+    <view class="row">
+        <view class="leftcol">身份证号:</view>
+        <view class="rightcol"><input type="text" value="{{modifyClientData.client_id_card_num}}" bindinput="inputClientIdCardNum"/></view>
+    </view>
+    <view class="row">
+        <view class="uploadIDCard"><button type="primary" bindtap="addUploadImg">上传身份证</button></view>
+    </view>
+    <view class="idimg">
+        <view class="idImgBox">
+            <image class="" src="{{modifyClientData.client_id_card_photo}}" mode="aspectFill" lazy-load="false" binderror="" bindload="">
+                
+            </image>
+        </view>
+    </view>
+    <view class="subClientInfo">
+        <button type="primary" bindtap="createClient">确 定</button>
+    </view>
+</view>

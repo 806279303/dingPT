@@ -1,0 +1,48 @@
+<!--components/tarBtns/tarBtns.wxml-->
+<view class="wx_tarBtns_container">
+    <view class="wx_tarBtns_btn" catchtap="_showCommodity">
+        <view class="img">
+            <image class="" src="../../image/glasses.png" mode="aspectFit" lazy-load="false" binderror="" bindload="">
+            </image>
+        </view>
+        <view class="txt">
+            {{Commodity}}
+        </view>
+    </view>
+    <view class="wx_tarBtns_btn" catchtap="_showClients">
+        <view class="img">
+            <image class="" src="../../image/client.png" mode="aspectFit" lazy-load="false" binderror="" bindload="">
+            </image>
+        </view>
+        <view class="txt">
+            {{Clients}}
+        </view>
+    </view>
+    <view class="wx_tarBtns_btn" catchtap="_showOutput">
+        <view class="img">
+            <image class="" src="../../image/output.png" mode="aspectFit" lazy-load="false" binderror="" bindload="">
+            </image>
+        </view>
+        <view class="txt">
+            {{Output}}
+        </view>
+    </view>
+    <view class="wx_tarBtns_btn" catchtap="_showFinancialTb">
+        <view class="img">
+            <image class="" src="../../image/finance.png" mode="aspectFit" lazy-load="false" binderror="" bindload="">
+            </image>
+        </view>
+        <view class="txt">
+            {{FinancialTb}}
+        </view>
+    </view>
+    <view class="wx_tarBtns_btn" catchtap="_showModify">
+        <view class="img">
+            <image class="" src="../../image/setting.png" mode="aspectFit" lazy-load="false" binderror="" bindload="">
+            </image>
+        </view>
+        <view class="txt">
+            {{Modify}}
+        </view>
+    </view>
+</view>

@@ -1,0 +1,404 @@
+/* components/financialTb/financialTb.wxss */
+.com_select{
+    width: 100%;
+    height: 60rpx;
+    border: 2rpx solid #313131;
+    box-sizing: border-box;
+    text-align: center;
+    line-height: 60rpx;
+    display: flex;
+    flex-flow: row nowrap;
+}
+.com_select .com_select_box{
+    width: 50%;
+    box-sizing: border-box;
+    font-size: 28rpx;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    /* 给定位用 */
+    position: relative;
+}
+.com_select .com_select_type{
+    border-right: 2rpx solid #313131;
+}
+.com_select .com_slect_trai{
+    width: 0;
+    height: 0;
+    border-width: 10rpx;
+    border-style: solid;
+    border-color: transparent transparent transparent #313131;
+    margin-left: 10rpx;
+}
+.com_select .transformTrai{
+    border-color: #313131 transparent transparent transparent;
+    margin-top: 7rpx;
+}
+.com_select_box .posBox{
+    position: absolute;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    top: 60rpx;
+    background-color: white;
+    z-index: 99;
+}
+.com_select_data_box{
+    width: 100%;
+    height: 45rpx;
+    line-height: 45rpx;
+    box-sizing: border-box;
+    border-width: 0 2rpx 2rpx 2rpx;
+    border-color: #313131;
+    border-style: solid;
+    color: #313131;
+    background-color: white;
+}
+
+
+.com_search{
+    width: 100%;
+    box-sizing: border-box;
+    border-bottom: 2rpx solid #313131;
+    padding:15rpx 30rpx;
+}
+.com_search input{
+    width: 95%;
+    margin:0 auto;
+    height: 50rpx;
+    border-radius: 20rpx;
+    padding-left: 25rpx;
+    padding-right: 15rpx;
+    font-size: 27rpx;
+    color: #313131;
+    border:2rpx solid #313131;
+}
+.financeList{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-left:2rpx solid #313131;
+}
+.financeList .financeRow{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 27rpx;
+    border-bottom:2rpx solid #313131;
+}
+.financeList .financeRow .col{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right:2rpx solid #313131;
+    padding: 10rpx 0 10rpx;
+}
+.financeList .financeRow .col1{
+    width: 30%;
+}
+.financeList .financeRow .col2{
+    width: 35%;
+}
+/* .financeList .financeRow .userImg{
+    width: 150rpx;
+    height: 90rpx;
+    background-color: #313131;
+} */
+
+
+
+
+
+.financial_tb{
+    width: 100%;
+    box-sizing: border-box;
+    border-bottom: 2rpx solid #313131;
+}
+.financial_tb .tr{
+    width: 100%;
+    display: flex;
+    border-top: 2rpx solid #313131;
+    border-left: 2rpx solid #313131;
+    box-sizing: border-box;
+    font-size: 20rpx;
+    color: black;
+}
+.financial_tb .tr .th{
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 2rpx solid #313131;
+    box-sizing: border-box;
+    padding: 17rpx 0;
+}
+.financial_tb .tr .td{
+    width: 20%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-right: 2rpx solid #313131;
+    box-sizing: border-box;
+    padding: 10rpx 0;
+    word-wrap:break-word
+}
+.financial_tb .tr .width1{
+    width: 20%;
+}
+.financial_tb .tr .width2{
+    width: 18%;
+}
+.financial_tb .tr .width3{
+    width: 22%;
+}
+.financial_tb .tr .width4{
+    width: 18%;
+}
+.financial_tb .tr .width5{
+    width: 22%;
+}
+
+/* components/stockOptions/stockOptions.wxss */
+.btnGroup{
+    width: 100%;
+    position: absolute;
+    bottom: 13vh;
+    display: flex;
+    align-items: center;
+}
+.flexStart{
+    justify-content: flex-start;
+
+}
+.spaceAround{
+    justify-content: space-around;
+
+}
+.btnGroup view{
+    width: 33.3%;
+    border-left:2rpx solid #313131;
+    border-top:2rpx solid #313131;
+    border-bottom:2rpx solid #313131;
+    line-height: 50rpx;
+    text-align: center;
+    font-size: 25rpx;
+    font-weight: bold;
+    margin-bottom: 2rpx;
+}
+.btnGroup view:last-child{
+    border-right:2rpx solid #313131;
+}
+.stockBox{
+    position: fixed;
+    width: 300rpx;
+    top: 25vh;
+    left: 50%;
+    margin-left: -150rpx;
+    border:2rpx solid #313131;
+    border-radius: 15rpx;
+    overflow: hidden;
+    background-color: aliceblue;
+}
+.stockBox .header{
+    width: 100%;
+    line-height: 40rpx;
+    border-bottom: 2rpx solid #313131;
+    text-align: right;
+}
+.stockBox .header .close{
+    margin-right: 10rpx;
+    font-size:28rpx;
+}
+.stockBox .writeStockPsw{
+    width: 100%;
+    padding: 20rpx 0;
+}
+.stockBox .writeStockPsw input{
+    width:70%;
+    height: 27rpx;
+    font-size: 20rpx;
+    border: 2rpx solid #313131;
+    margin:0 auto;
+    padding:0 5rpx;
+}
+.stockBox button{
+    width: 100%;
+    height: 45rpx;
+    color:white;
+    line-height: 40rpx;
+    font-size: 25rpx;
+    border-radius: 0;
+}
+
+
+.backToFinaceDta{
+    width: 200rpx;
+    height: 60rpx;
+    position: absolute;
+    bottom: 25vh;
+    left: 2rpx;
+}
+.backToFinaceDta button{
+    width: 100%;
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 30rpx;
+}
+
+.financeBox{
+    width: 550rpx;
+    position: absolute;
+    left: 50%;
+    margin-left: -275rpx;
+    top: 20%;
+    border:2rpx solid rgba(0, 0, 0, .1);
+    box-shadow: 10rpx 10rpx 20rpx rgba(0, 0, 0, .1);
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+}
+.financeBox .closeFinanceBox{
+    position: absolute;
+    /* top:5rpx; */
+    width: 30rpx;
+    right: 10rpx;
+    font-size: 40rpx;
+}
+.financeBox view{
+    width: 100%;
+    display: flex;
+}
+.financeBox .header{
+    height:50rpx;
+    border-bottom: 2rpx solid rgba(0, 0, 0, .2);
+
+}
+.financeBox .row{
+    justify-content: center;
+    margin-bottom: 10rpx;
+}
+.financeBox .fir{
+    margin-top: 20rpx;
+}
+.financeBox .headrow{
+    margin-top: 20rpx;
+}
+.financeBox .row .leftcol{
+    width: 200rpx;
+    display: inline-block;
+    text-align: right;
+    /* background-color: aquamarine; */
+}
+.financeBox .row .rightcol{
+    width: 200rpx;
+    text-align: left;
+    margin-right:45rpx;
+}
+.financeBox .row .rightcol input{
+    width: 100%;
+    border:2rpx solid #313131;
+}
+.financeBox .row button{
+    width: 200rpx;
+    height: 70rpx;
+    font-size: 30rpx;
+    line-height: 70rpx;
+    margin-top: 20rpx;
+    margin-bottom: 20rpx;
+}
+
+.totalConsume{
+    width: 100%;
+    height: 40rpx;
+    box-sizing: border-box;
+    border:2rpx solid #313131;
+    position: fixed;
+    bottom: 10vh;
+    justify-content: center;
+    align-items: center;
+    font-size: 30rpx;
+    text-align: center;
+}
+
+
+.dayFilter{
+    width: 100%;
+    height: 60rpx;
+    border: 2rpx solid #313131;
+    box-sizing: border-box;
+    text-align: center;
+    line-height: 60rpx;
+    display: flex;
+    flex-flow: row nowrap;
+}
+.dayFilter .com_select_box{
+    width:100%;
+    box-sizing: border-box;
+    font-size: 28rpx;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    /* 给定位用 */
+    position: relative;
+}
+.dayFilter .com_select_type{
+    border-right: 2rpx solid #313131;
+}
+.dayFilter .com_slect_trai{
+    width: 0;
+    height: 0;
+    border-width: 10rpx;
+    border-style: solid;
+    border-color: transparent transparent transparent #313131;
+    margin-left: 10rpx;
+}
+.dayFilter .transformTrai{
+    border-color: #313131 transparent transparent transparent;
+    margin-top: 7rpx;
+}
+
+.dayFilter .com_select_box .posBox{
+    position: absolute;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    top: 60rpx;
+    z-index: 99;
+    box-shadow: 0 10rpx 20rpx rgba(0, 0, 0, .3);
+}
+.dayFilter .com_select_data_box{
+    width: 100%;
+    height: 50rpx;
+    line-height: 50rpx;
+    box-sizing: border-box;
+    border-width: 0 2rpx 2rpx 2rpx;
+    border-color: #313131;
+    border-style: solid;
+    color: #313131;
+    background-color: rgb(216, 216, 216);
+}
+.showFinanceRemark{
+    padding: 20rpx 30rpx 30rpx 30rpx;
+    box-shadow: 5rpx 10rpx 20rpx rgba(0, 0, 0, .3);
+}
+.showFinanceRemark .row{
+    margin-top: 30rpx;
+    font-size: 27rpx;
+    justify-content: start;
+    padding-left: 20rpx;
+}
+.showFinanceRemark .row .leftcol{
+    text-align: left;
+    width:70rpx;
+}
+.showFinanceRemark .row .rightcol{
+    width:80%;
+    word-break: break-all;
+}

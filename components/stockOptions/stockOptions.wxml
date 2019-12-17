@@ -1,0 +1,15 @@
+<!--components/stockOptions/stockOptions.wxml-->
+<view class="btnGroup" :class="{{isShowStockOptions?'flexStart':'spaceAround'}}">
+    <view bindtap="checkStock" wx:if="{{!isShowStockOptions}}">{{placeholder == '店长' ? '店长' : '客户经理'}}操作</view>
+
+    <view bindtap="deleteStock" wx:if="{{isShowStockOptions}}" data-type="{{placeholder}}">{{isDelete?'取消删除':'删除'}}</view>
+    <view bindtap="modifyStock" wx:if="{{isShowStockOptions}}" data-type="{{placeholder}}">{{isModify?'取消修改':'修改'}}</view>
+    <view bindtap="toAddGood" wx:if="{{isShowStockOptions}}" data-type="{{placeholder}}">添加</view>
+    <view bindtap="toExitGood" wx:if="{{isShowStockOptions}}" data-type="{{placeholder}}">退出</view>
+</view>
+
+<view class="stockBox" wx:if="{{isShowCheckStock}}">
+    <view class="header"><view class="close" bindtap="closeCheckStock">x</view></view>
+    <view class="writeStockPsw"><input bindinput="recordInput" placeholder="{{'请输入客户经理密码'}}"/></view>
+    <button type="primary" bindtap="subPwd" data-type="{{placeholder}}">确 定</button>
+</view>

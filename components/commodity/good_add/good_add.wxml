@@ -1,0 +1,166 @@
+<!--components/commodity/good_add/good_add.wxml-->
+<view class="add_good_container" hidden="{{!isShowAddGood}}">
+    <view class="backToCommdity">
+        <button type="primary" bindtap="closeAddCommodity" wx:if="{{!isPowerClientInfo}}">返回</button>
+    </view>
+    <view class="add_good_list add_sub">
+        <button bindtap="chooseModel" type="primary">选择模板</button>
+    </view>
+    <view class="add_good_list">
+        <view class="list_txt">种类：</view>
+        <view class="list_input">
+            <!-- <input type="text" data-content="kind_id" bindinput="recordInput"/> -->
+            <view class="list_input_txt" bindtap="showKindOptionList">{{chooedKindName == ''?'种类':chooedKindName}}</view>
+            <view class="list_slect_trai {{isSelectType?'transformTrai':''}}"></view>
+            <!-- 下拉列表 -->
+            <view class="list_option" wx:if="{{isKindOptionList}}">
+                <view class="list_row" wx:for="{{goodKindsAndNames.kind_data}}" data-kindval="{{item.good_kind}}" data-kindid="{{item.kind_id}}" wx:key="index" bindtap="choooseKind">{{item.good_kind}}</view>
+            </view>
+        </view>
+        <view class="list_add list_add_btn"><button type="primary" bindtap="showAddKind">增加</button></view>
+        <view class="list_add list_add_btn del_btn"><button type="primary" bindtap="delKind">删除</button></view>
+    </view>
+    <view class="add_good_list de_info">
+        <view class="list_txt">名称：</view>
+        <view class="list_input">
+            <!-- <input type="text" data-content="name_id" bindinput="recordInput"/> -->
+            <view class="list_input_txt" bindtap="showNameOptionList">{{chooedNameName == ''?'名称':chooedNameName}}</view>
+            <!-- 下拉列表 -->
+            <view class="list_option" wx:if="{{isNameOptionList}}">
+                <view class="list_row" wx:for="{{goodKindsAndNames.name_data}}" data-nameval="{{item.good_name}}" data-nameid="{{item.name_id}}" wx:key="index" bindtap="choooseName">{{item.good_name}}</view>
+            </view>
+        </view>
+        <view class="list_add list_add_btn"><button type="primary" bindtap="showAddName">增加</button></view>
+        <view class="list_add list_add_btn del_btn"><button type="primary" bindtap="delName">删除</button></view>
+    </view>
+    <view class="add_good_list" wx:for="{{good_data.children}}" wx:key="{{index}}">
+        <view class="add_list_row">
+            <view class="add_list_halfrow">
+                <view class="list_detail">
+                    <view class="list_txt">型号：</view>
+                    <view class="list_input  type">
+                        <input type="text" data-index="{{index}}" data-content="type" bindinput="recordInput" value="{{item.type}}"/>
+                    </view>
+                </view>
+                <view class="list_detail list_right">
+                    <view class="list_txt">价格：</view>
+                    <view class="list_input good_price">
+                        <input type="number" data-index="{{index}}" data-index="{{index}}" data-content="good_price" bindinput="recordInput" value="{{item.good_price}}"/>
+                    </view>
+                </view>
+                <!-- <view class="list_detail list_right">
+                    <view class="list_txt">附加费用：</view>
+                    <view class="list_input good_price">
+                        <input type="number" data-index="{{index}}" data-index="{{index}}" data-content="add_price" bindinput="recordInput" value="{{item.add_price}}"/>
+                    </view>
+                </view> -->
+            </view>
+            <view class="add_list_halfrow">
+                <view class="list_detail">
+                    <view class="list_txt">开放权限：</view>
+                    <view class="power">
+                        <button type="primary" data-index="{{index}}" bindtap="allClientPower" class="powerBtn">{{item.special_client.length == 0?'已选':''}}所有</button>
+                        <button type="primary" data-index="{{index}}" bindtap="chooseClientPower" class="powerBtn">{{item.special_client.length !== 0?'已选':''}}部分</button>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="del_list" wx:if="{{index>0}}" bindtap="delList">X</view>
+    </view>
+    <!-- 添加 -->
+    <view class="add_good_list add_btn" bindtap="moreTypeAndPrice">
+        +
+    </view>
+    <view class="add_good_list add_sub">
+        <button bindtap="sendAddInfo" type="primary">提交</button>
+    </view>
+</view>
+
+<view class="add_box add_kind modelContainer" wx:if="{{isAddModel}}">
+    <view class="title">模板选择</view>  
+    <view class="modelBox" wx:if="{{!isAddModelBox}}">
+        <view class="modelTxt" bindtap="showModelList">模板选择</view>
+        <view class="modelList" wx:if="{{ismodelList}}">
+            <scroll-view
+                scroll-y
+                style="height: 300rpx;">
+                <view class="modelRow" wx:for="{{comModel}}" data-template="{{item}}" bindtap="chooseCurModel" wx:key="{{index}}">
+                    <view class="good_kind" data-kindid="{{kind_id}}" data-template="{{item}}">{{item.good_kind}}</view>
+                    <view class="good_name" data-kindid="{{kind_id}}" data-template="{{item}}">{{item.good_name}}</view>
+                    <view class="delCurModel" data-templateid="{{item.template_id}}" catchtap="delModel">x</view>
+                </view>
+            </scroll-view>
+        </view>
+    </view>
+    <view class="addBox" wx:else>
+        <view class="modelBox">
+            <!-- <input type="text" data-content="kind_id" bindinput="recordInput"/> -->
+            <view class="modelTxt" bindtap="showKindOptionListModel">{{chooedKindNameModel == ''?'种类':chooedKindNameModel}}</view>
+            <!-- 下拉列表 -->
+            <view class="modelList" wx:if="{{isKindOptionListModel}}">
+                <view class="modelRow" wx:for="{{goodKindsAndNames.kind_data}}" data-kindval="{{item.good_kind}}" data-kindid="{{item.kind_id}}" wx:key="index" bindtap="choooseKindModel">{{item.good_kind}}</view>
+            </view>
+        </view>
+        <view class="modelBox">
+            <!-- <input type="text" data-content="name_id" bindinput="recordInput"/> -->
+            <view class="modelTxt" bindtap="showNameOptionListModel">{{chooedNameNameModel == ''?'名称':chooedNameNameModel}}</view>
+            <!-- 下拉列表 -->
+            <view class="modelList" wx:if="{{isNameOptionListModel}}">
+                <view class="modelRow" wx:for="{{goodKindsAndNames.name_data}}" data-nameval="{{item.good_name}}" data-nameid="{{item.name_id}}" wx:key="index" bindtap="choooseNameModel">{{item.good_name}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="addModel" wx:if="{{!isAddModelBox}}"><button type="primary" bindtap="addNewModel">新增模板</button></view>
+    <view class="addModel" wx:if="{{isAddModelBox}}"><button type="primary" bindtap="addNewModel">返回</button></view>
+    <view class="addModel subModel" wx:if="{{isAddModelBox}}"><button type="primary" bindtap="subNewModel">新增</button></view>
+    <view class="closeAdd" bindtap="closeModel">x</view>
+  </view>
+
+
+<view class="add_box add_kind" wx:if="{{isAddKind}}">
+  <view class="title">添加种类</view>  
+  <view class="add_input kind_input"><input type="text" bindinput="inputKind"/></view>
+  <view class="sub_btn"><button type="primary" bindtap="addKind">确 定</button></view>
+  <view class="closeAdd" bindtap="closeAddKind">x</view>
+</view>
+
+<view class="add_box add_name" wx:if="{{isAddName}}">
+    <view class="title">添加名称</view>  
+    <view class="add_input name_input"><input type="text" bindinput="inputName"/></view>
+    <view class="sub_btn"><button type="primary" bindtap="addName">确 定</button></view>
+    <view class="closeAdd" bindtap="closeAddName">x</view>
+  </view>
+
+<view class="stockBox" wx:if="{{isShowCheckStock}}">
+    <view class="header"><view class="close" bindtap="closeCheckStock">x</view></view>
+    <view class="writeStockPsw"><input bindinput="recordInput" placeholder="{{'请输入'+placeholder+'密码'}}"/></view>
+    <button type="primary" bindtap="subPwd" data-type="{{placeholder}}">确 定</button>
+</view>
+
+<view class="powerClientInfo" wx:if="{{isPowerClientInfo}}">
+    <view class="closePowerClientInfo" bindtap="closePowerClientInfo">x</view>
+    <view class="title">客户权限选择</view>
+    <view class="search"><input type="text" placeholder="姓名搜索" bindchange="findPowerClient"/></view>
+    <scroll-view
+        scroll-y
+        style="height: 650rpx;"
+    >
+        <view class="clientTb">
+            <view class="row">
+                <view class="col col1 bold">店名</view>
+                <view class="col col2 bold">姓名</view>
+                <view class="col col3 bold">手机号</view>
+                <view class="col col4 bold">信用额度</view>
+                <view class="col col5 bold">选择</view>
+            </view>
+            <view class="row" wx:for="{{tempClientInfo}}" wx:key="{{index}}">
+                <view class="col col1">{{item.client_shop}}</view>
+                <view class="col col2">{{item.client_name}}</view>
+                <view class="col col3">{{item.client_phone}}</view>
+                <view class="col col4">{{item.client_credit}}</view>
+                <view class="col col5"><view class="{{item.isSelect?'selected':'noselect'}}" data-clientid="{{item.client_id}}" data-index="{{index}}" bindtap="selectCurrentPower"></view></view>
+            </view>
+        </view>
+        <view class="subPowerClient"><button type="primary" bindtap="closePowerClientInfo">确 定</button></view>
+    </scroll-view>
+</view>
